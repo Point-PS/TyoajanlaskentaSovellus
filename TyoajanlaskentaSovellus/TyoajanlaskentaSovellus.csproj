@@ -201,14 +201,41 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="database_firewall_rules.cs">
+      <DependentUpon>TyoajanlaskentaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Henkilot.cs">
+      <DependentUpon>TyoajanlaskentaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Tunnit.cs">
+      <DependentUpon>TyoajanlaskentaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TyoajanlaskentaEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TyoajanlaskentaEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TyoajanlaskentaEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TyoajanlaskentaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TyoajanlaskentaEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TyoajanlaskentaEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Tyot.cs">
+      <DependentUpon>TyoajanlaskentaEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -237,6 +264,16 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="TyoajanlaskentaEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TyoajanlaskentaEntities.edmx</DependentUpon>
+      <LastGenOutput>TyoajanlaskentaEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TyoajanlaskentaEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TyoajanlaskentaEntities.edmx</DependentUpon>
+      <LastGenOutput>TyoajanlaskentaEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -272,6 +309,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <EntityDeploy Include="TyoajanlaskentaEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TyoajanlaskentaEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="TyoajanlaskentaEntities.edmx.diagram">
+      <DependentUpon>TyoajanlaskentaEntities.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
