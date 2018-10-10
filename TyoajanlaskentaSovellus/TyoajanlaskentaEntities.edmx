@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="scrumDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="scrumDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Henkilot">
           <Key>
             <PropertyRef Name="HenkiloId" />
@@ -16,6 +16,8 @@
             <PropertyRef Name="TuntiId" />
           </Key>
           <Property Name="TuntiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HenkiloId" Type="int" Nullable="false" />
+          <Property Name="TyoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Tyot">
           <Key>
@@ -56,8 +58,7 @@ warning 6002: The table/view 'scrumDatabase.sys.database_firewall_rules' does no
     FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="scrumDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -72,6 +73,8 @@ warning 6002: The table/view 'scrumDatabase.sys.database_firewall_rules' does no
             <PropertyRef Name="TuntiId" />
           </Key>
           <Property Name="TuntiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HenkiloId" Type="Int32" Nullable="false" />
+          <Property Name="TyoId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Tyot">
           <Key>
@@ -117,6 +120,8 @@ warning 6002: The table/view 'scrumDatabase.sys.database_firewall_rules' does no
           <EntitySetMapping Name="Tunnit">
             <EntityTypeMapping TypeName="scrumDatabaseModel.Tunnit">
               <MappingFragment StoreEntitySet="Tunnit">
+                <ScalarProperty Name="TyoId" ColumnName="TyoId" />
+                <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
                 <ScalarProperty Name="TuntiId" ColumnName="TuntiId" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -15,5 +15,7 @@ namespace TyoajanlaskentaSovellus
     public partial class Tunnit
     {
         public int TuntiId { get; set; }
+        public int HenkiloId { get; set; }
+        public int TyoId { get; set; }
     }
 }
