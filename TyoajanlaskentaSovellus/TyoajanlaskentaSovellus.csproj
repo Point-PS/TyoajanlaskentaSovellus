@@ -275,6 +275,7 @@
       <DependentUpon>TyoajanlaskentaEntities.edmx</DependentUpon>
       <LastGenOutput>TyoajanlaskentaEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="Utilities.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

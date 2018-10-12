@@ -1,0 +1,9 @@
+﻿SERVER: tcp:tyoajanlaskentasovellus.database.windows.net
+DATABASE: scrumDatabase
+SERVER LOGIN: ScrumTiimi
+PASSWORD: Point2018!
+CONNECTION STRING: Server=tcp:tyoajanlaskentasovellus.database.windows.net,1433;Initial Catalog=scrumDatabase;Persist Security Info=False;User ID={ScrumTiimi};Password={Point2018!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+RESOURCE GROUP: schoolGroup
+LOCATION: NorthEurope
+WEBSITE: http://tyoajanlaskentasovelluswebapp.azurewebsites.net/
+GITHUB: https://github.com/Point-PS/TyoajanlaskentaSovellus
