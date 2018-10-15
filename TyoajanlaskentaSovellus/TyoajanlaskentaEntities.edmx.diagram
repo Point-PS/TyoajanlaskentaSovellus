@@ -5,10 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4b3ee61dc5064054b8220b2cd9896154" Name="Diagram1">
-        <EntityTypeShape EntityType="scrumDatabaseModel.Henkilot" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="scrumDatabaseModel.Tunnit" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="scrumDatabaseModel.Tyot" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="scrumDatabaseModel.database_firewall_rules" Width="1.5" PointX="2.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="scrumDatabaseModel.Henkilot" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="scrumDatabaseModel.Tunnit" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="scrumDatabaseModel.Tyot" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

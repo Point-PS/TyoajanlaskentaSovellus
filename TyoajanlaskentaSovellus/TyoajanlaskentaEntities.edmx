@@ -4,53 +4,41 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="scrumDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="scrumDatabaseModelStoreContainer">
-    <EntitySet Name="Henkilot" EntityType="scrumDatabaseModel.Store.Henkilot" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tunnit" EntityType="scrumDatabaseModel.Store.Tunnit" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tyot" EntityType="scrumDatabaseModel.Store.Tyot" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="database_firewall_rules" EntityType="scrumDatabaseModel.Store.database_firewall_rules" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
-  <EntityType Name="Henkilot">
-    <Key>
-      <PropertyRef Name="HenkiloId" />
-    </Key>
-    <Property Name="HenkiloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Tunnit">
-    <Key>
-      <PropertyRef Name="TuntiId" />
-    </Key>
-    <Property Name="TuntiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HenkiloId" Type="int" Nullable="false" />
-    <Property Name="TyoId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Tyot">
-    <Key>
-      <PropertyRef Name="TyoId" />
-    </Key>
-    <Property Name="TyoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-  </EntityType>
-  <EntityType Name="database_firewall_rules">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="start_ip_address" />
-      <PropertyRef Name="end_ip_address" />
-      <PropertyRef Name="create_date" />
-      <PropertyRef Name="modify_date" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="start_ip_address" Type="varchar" Nullable="false" MaxLength="45" />
-    <Property Name="end_ip_address" Type="varchar" Nullable="false" MaxLength="45" />
-    <Property Name="create_date" Type="datetime" Nullable="false" />
-    <Property Name="modify_date" Type="datetime" Nullable="false" />
-  </EntityType>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="scrumDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Henkilot">
+          <Key>
+            <PropertyRef Name="HenkiloId" />
+          </Key>
+          <Property Name="HenkiloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tunnit">
+          <Key>
+            <PropertyRef Name="TuntiId" />
+          </Key>
+          <Property Name="TuntiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HenkiloId" Type="int" Nullable="false" />
+          <Property Name="TyoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tyot">
+          <Key>
+            <PropertyRef Name="TyoId" />
+          </Key>
+          <Property Name="TyoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="scrumDatabaseModelStoreContainer">
+          <EntitySet Name="Henkilot" EntityType="Self.Henkilot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tunnit" EntityType="Self.Tunnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tyot" EntityType="Self.Tyot" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="scrumDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="scrumDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Henkilot" EntityType="scrumDatabaseModel.Henkilot" />
+          <EntitySet Name="Tunnit" EntityType="scrumDatabaseModel.Tunnit" />
+          <EntitySet Name="Tyot" EntityType="scrumDatabaseModel.Tyot" />
+        </EntityContainer>
         <EntityType Name="Henkilot">
           <Key>
             <PropertyRef Name="HenkiloId" />
@@ -71,70 +59,36 @@
           </Key>
           <Property Name="TyoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityType Name="database_firewall_rules">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="start_ip_address" />
-            <PropertyRef Name="end_ip_address" />
-            <PropertyRef Name="create_date" />
-            <PropertyRef Name="modify_date" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityContainer Name="scrumDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Henkilot" EntityType="Self.Henkilot" />
-          <EntitySet Name="Tunnit" EntityType="Self.Tunnit" />
-          <EntitySet Name="Tyot" EntityType="Self.Tyot" />
-          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="scrumDatabaseModelStoreContainer" CdmEntityContainer="scrumDatabaseEntities">
-    <EntitySetMapping Name="Henkilot">
-      <EntityTypeMapping TypeName="IsTypeOf(scrumDatabaseModel.Henkilot)">
-        <MappingFragment StoreEntitySet="Henkilot">
-          <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tunnit">
-      <EntityTypeMapping TypeName="IsTypeOf(scrumDatabaseModel.Tunnit)">
-        <MappingFragment StoreEntitySet="Tunnit">
-          <ScalarProperty Name="TuntiId" ColumnName="TuntiId" />
-          <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
-          <ScalarProperty Name="TyoId" ColumnName="TyoId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tyot">
-      <EntityTypeMapping TypeName="IsTypeOf(scrumDatabaseModel.Tyot)">
-        <MappingFragment StoreEntitySet="Tyot">
-          <ScalarProperty Name="TyoId" ColumnName="TyoId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="database_firewall_rules">
-      <EntityTypeMapping TypeName="IsTypeOf(scrumDatabaseModel.database_firewall_rules)">
-        <MappingFragment StoreEntitySet="database_firewall_rules">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
-          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
-          <ScalarProperty Name="create_date" ColumnName="create_date" />
-          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
+          <EntitySetMapping Name="Henkilot">
+            <EntityTypeMapping TypeName="scrumDatabaseModel.Henkilot">
+              <MappingFragment StoreEntitySet="Henkilot">
+                <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tunnit">
+            <EntityTypeMapping TypeName="scrumDatabaseModel.Tunnit">
+              <MappingFragment StoreEntitySet="Tunnit">
+                <ScalarProperty Name="TyoId" ColumnName="TyoId" />
+                <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
+                <ScalarProperty Name="TuntiId" ColumnName="TuntiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tyot">
+            <EntityTypeMapping TypeName="scrumDatabaseModel.Tyot">
+              <MappingFragment StoreEntitySet="Tyot">
+                <ScalarProperty Name="TyoId" ColumnName="TyoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->

@@ -28,6 +28,5 @@ namespace TyoajanlaskentaSovellus
         public virtual DbSet<Henkilot> Henkilot { get; set; }
         public virtual DbSet<Tunnit> Tunnit { get; set; }
         public virtual DbSet<Tyot> Tyot { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }
