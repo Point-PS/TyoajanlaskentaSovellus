@@ -20,6 +20,7 @@
           <Property Name="TuntiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HenkiloId" Type="int" Nullable="false" />
           <Property Name="TyoId" Type="int" Nullable="false" />
+          <Property Name="Tuntimäärä" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Tyot">
           <Key>
@@ -99,6 +100,7 @@
           <Property Name="TuntiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HenkiloId" Type="Int32" Nullable="false" />
           <Property Name="TyoId" Type="Int32" Nullable="false" />
+          <Property Name="Tuntimäärä" Type="Time" Precision="7" />
           <NavigationProperty Name="Henkilot" Relationship="scrumDatabaseModel.Fk_Tunnit_Henkilot" FromRole="Tunnit" ToRole="Henkilot" />
           <NavigationProperty Name="Tyot" Relationship="scrumDatabaseModel.Fk_Tunnit_Tyot" FromRole="Tunnit" ToRole="Tyot" />
         </EntityType>
@@ -153,6 +155,7 @@
           <EntitySetMapping Name="Tunnit">
             <EntityTypeMapping TypeName="scrumDatabaseModel.Tunnit">
               <MappingFragment StoreEntitySet="Tunnit">
+                <ScalarProperty Name="Tuntimäärä" ColumnName="Tuntimäärä" />
                 <ScalarProperty Name="TyoId" ColumnName="TyoId" />
                 <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
                 <ScalarProperty Name="TuntiId" ColumnName="TuntiId" />
