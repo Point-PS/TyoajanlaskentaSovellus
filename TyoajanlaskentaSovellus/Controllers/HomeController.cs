@@ -26,5 +26,12 @@ namespace TyoajanlaskentaSovellus.Controllers
 
             return View();
         }
+
+        public ActionResult Ulkoasu()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
