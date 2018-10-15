@@ -22,6 +22,7 @@ namespace TyoajanlaskentaSovellus
     
         public int HenkiloId { get; set; }
         public string Etunimi { get; set; }
+        public string Sukunimi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tunnit> Tunnit { get; set; }
