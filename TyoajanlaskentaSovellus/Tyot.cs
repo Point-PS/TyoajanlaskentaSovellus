@@ -21,6 +21,8 @@ namespace TyoajanlaskentaSovellus
         }
     
         public int TyoId { get; set; }
+        public string Tyotunniste { get; set; }
+        public string Kuvaus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tunnit> Tunnit { get; set; }
