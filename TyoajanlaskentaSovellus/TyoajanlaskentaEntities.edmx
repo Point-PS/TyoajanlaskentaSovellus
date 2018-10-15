@@ -11,6 +11,7 @@
           </Key>
           <Property Name="HenkiloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Etunimi" Type="varchar" MaxLength="50" />
+          <Property Name="Sukunimi" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Tunnit">
           <Key>
@@ -25,6 +26,8 @@
             <PropertyRef Name="TyoId" />
           </Key>
           <Property Name="TyoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tyotunniste" Type="varchar" MaxLength="10" />
+          <Property Name="Kuvaus" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="Fk_Tunnit_Henkilot">
           <End Role="Henkilot" Type="Self.Henkilot" Multiplicity="1" />
@@ -86,6 +89,7 @@
           </Key>
           <Property Name="HenkiloId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sukunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tunnit" Relationship="scrumDatabaseModel.Fk_Tunnit_Henkilot" FromRole="Henkilot" ToRole="Tunnit" />
         </EntityType>
         <EntityType Name="Tunnit">
@@ -103,6 +107,8 @@
             <PropertyRef Name="TyoId" />
           </Key>
           <Property Name="TyoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tyotunniste" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kuvaus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tunnit" Relationship="scrumDatabaseModel.Fk_Tunnit_Tyot" FromRole="Tyot" ToRole="Tunnit" />
         </EntityType>
         <Association Name="Fk_Tunnit_Henkilot">
@@ -138,6 +144,7 @@
           <EntitySetMapping Name="Henkilot">
             <EntityTypeMapping TypeName="scrumDatabaseModel.Henkilot">
               <MappingFragment StoreEntitySet="Henkilot">
+                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
                 <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
                 <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
               </MappingFragment>
@@ -155,6 +162,8 @@
           <EntitySetMapping Name="Tyot">
             <EntityTypeMapping TypeName="scrumDatabaseModel.Tyot">
               <MappingFragment StoreEntitySet="Tyot">
+                <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
+                <ScalarProperty Name="Tyotunniste" ColumnName="Tyotunniste" />
                 <ScalarProperty Name="TyoId" ColumnName="TyoId" />
               </MappingFragment>
             </EntityTypeMapping>
