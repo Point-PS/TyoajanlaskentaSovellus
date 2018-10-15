@@ -5,9 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4b3ee61dc5064054b8220b2cd9896154" Name="Diagram1">
-        <EntityTypeShape EntityType="scrumDatabaseModel.Henkilot" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="scrumDatabaseModel.Tunnit" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="scrumDatabaseModel.Tyot" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="scrumDatabaseModel.Henkilot" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="scrumDatabaseModel.Tunnit" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="scrumDatabaseModel.Tyot" Width="1.5" PointX="0.75" PointY="4.25" />
+        <AssociationConnector Association="scrumDatabaseModel.Fk_Tunnit_Henkilot" />
+        <AssociationConnector Association="scrumDatabaseModel.Fk_Tunnit_Tyot" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,5 +17,8 @@ namespace TyoajanlaskentaSovellus
         public int TuntiId { get; set; }
         public int HenkiloId { get; set; }
         public int TyoId { get; set; }
+    
+        public virtual Henkilot Henkilot { get; set; }
+        public virtual Tyot Tyot { get; set; }
     }
 }

@@ -10,6 +10,7 @@
             <PropertyRef Name="HenkiloId" />
           </Key>
           <Property Name="HenkiloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Etunimi" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Tunnit">
           <Key>
@@ -25,10 +26,42 @@
           </Key>
           <Property Name="TyoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <Association Name="Fk_Tunnit_Henkilot">
+          <End Role="Henkilot" Type="Self.Henkilot" Multiplicity="1" />
+          <End Role="Tunnit" Type="Self.Tunnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Henkilot">
+              <PropertyRef Name="HenkiloId" />
+            </Principal>
+            <Dependent Role="Tunnit">
+              <PropertyRef Name="HenkiloId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_Tunnit_Tyot">
+          <End Role="Tyot" Type="Self.Tyot" Multiplicity="1" />
+          <End Role="Tunnit" Type="Self.Tunnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tyot">
+              <PropertyRef Name="TyoId" />
+            </Principal>
+            <Dependent Role="Tunnit">
+              <PropertyRef Name="TyoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="scrumDatabaseModelStoreContainer">
           <EntitySet Name="Henkilot" EntityType="Self.Henkilot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tunnit" EntityType="Self.Tunnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tyot" EntityType="Self.Tyot" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Fk_Tunnit_Henkilot" Association="Self.Fk_Tunnit_Henkilot">
+            <End Role="Henkilot" EntitySet="Henkilot" />
+            <End Role="Tunnit" EntitySet="Tunnit" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Tunnit_Tyot" Association="Self.Fk_Tunnit_Tyot">
+            <End Role="Tyot" EntitySet="Tyot" />
+            <End Role="Tunnit" EntitySet="Tunnit" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -38,12 +71,22 @@
           <EntitySet Name="Henkilot" EntityType="scrumDatabaseModel.Henkilot" />
           <EntitySet Name="Tunnit" EntityType="scrumDatabaseModel.Tunnit" />
           <EntitySet Name="Tyot" EntityType="scrumDatabaseModel.Tyot" />
+          <AssociationSet Name="Fk_Tunnit_Henkilot" Association="scrumDatabaseModel.Fk_Tunnit_Henkilot">
+            <End Role="Henkilot" EntitySet="Henkilot" />
+            <End Role="Tunnit" EntitySet="Tunnit" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Tunnit_Tyot" Association="scrumDatabaseModel.Fk_Tunnit_Tyot">
+            <End Role="Tyot" EntitySet="Tyot" />
+            <End Role="Tunnit" EntitySet="Tunnit" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Henkilot">
           <Key>
             <PropertyRef Name="HenkiloId" />
           </Key>
           <Property Name="HenkiloId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tunnit" Relationship="scrumDatabaseModel.Fk_Tunnit_Henkilot" FromRole="Henkilot" ToRole="Tunnit" />
         </EntityType>
         <EntityType Name="Tunnit">
           <Key>
@@ -52,13 +95,40 @@
           <Property Name="TuntiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HenkiloId" Type="Int32" Nullable="false" />
           <Property Name="TyoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Henkilot" Relationship="scrumDatabaseModel.Fk_Tunnit_Henkilot" FromRole="Tunnit" ToRole="Henkilot" />
+          <NavigationProperty Name="Tyot" Relationship="scrumDatabaseModel.Fk_Tunnit_Tyot" FromRole="Tunnit" ToRole="Tyot" />
         </EntityType>
         <EntityType Name="Tyot">
           <Key>
             <PropertyRef Name="TyoId" />
           </Key>
           <Property Name="TyoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Tunnit" Relationship="scrumDatabaseModel.Fk_Tunnit_Tyot" FromRole="Tyot" ToRole="Tunnit" />
         </EntityType>
+        <Association Name="Fk_Tunnit_Henkilot">
+          <End Type="scrumDatabaseModel.Henkilot" Role="Henkilot" Multiplicity="1" />
+          <End Type="scrumDatabaseModel.Tunnit" Role="Tunnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Henkilot">
+              <PropertyRef Name="HenkiloId" />
+            </Principal>
+            <Dependent Role="Tunnit">
+              <PropertyRef Name="HenkiloId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_Tunnit_Tyot">
+          <End Type="scrumDatabaseModel.Tyot" Role="Tyot" Multiplicity="1" />
+          <End Type="scrumDatabaseModel.Tunnit" Role="Tunnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tyot">
+              <PropertyRef Name="TyoId" />
+            </Principal>
+            <Dependent Role="Tunnit">
+              <PropertyRef Name="TyoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -68,6 +138,7 @@
           <EntitySetMapping Name="Henkilot">
             <EntityTypeMapping TypeName="scrumDatabaseModel.Henkilot">
               <MappingFragment StoreEntitySet="Henkilot">
+                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
                 <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
               </MappingFragment>
             </EntityTypeMapping>

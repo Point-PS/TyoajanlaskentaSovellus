@@ -14,6 +14,15 @@ namespace TyoajanlaskentaSovellus
     
     public partial class Tyot
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tyot()
+        {
+            this.Tunnit = new HashSet<Tunnit>();
+        }
+    
         public int TyoId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tunnit> Tunnit { get; set; }
     }
 }

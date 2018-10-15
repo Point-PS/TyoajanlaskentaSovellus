@@ -14,6 +14,16 @@ namespace TyoajanlaskentaSovellus
     
     public partial class Henkilot
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Henkilot()
+        {
+            this.Tunnit = new HashSet<Tunnit>();
+        }
+    
         public int HenkiloId { get; set; }
+        public string Etunimi { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tunnit> Tunnit { get; set; }
     }
 }
