@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TyoajanlaskentaSovellus.Henkilot>
+
+@{
+    ViewBag.Title = "Henkilot2";
+}
+
+<h2>Henkilot2</h2>
+<p>Listattuna Visual Studion Add View -ominaisuudella.</p>
+<p><strong>Huom!</strong> Tällä sivulla ei ole mitään toiminnallisuuksia.</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Etunimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sukunimi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etunimi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sukunimi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HenkiloId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HenkiloId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HenkiloId })
+        </td>
+    </tr>
+}
+
+</table>

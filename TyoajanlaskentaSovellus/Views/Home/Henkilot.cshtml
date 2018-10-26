@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Testi";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        function päivitäHenkilölista() {
+
+            $.getJSON("/Home/HaeKaikkiHenkilot", null, function (json) {
+                var henkilot = JSON.parse(json);
+
+                console.log(json); // selaimen f12-työkalut, valitse console ja katso mitä tapahtuu
+                console.log(henkilot);
+
+                var henkilotTaulukko = "";
+
+                for (var i = 0; i < henkilot.length; i++) {
+                    henkilotTaulukko += "<tr>" +
+                        "<td>" + henkilot[i].HenkiloId + "</td>" +
+                        "<td>" + henkilot[i].Etunimi + "</td>" +
+                        "<td>" + henkilot[i].Sukunimi + "</td>" +
+                        "</tr>\r\n";
+                }
+
+                $("#henkilötListana tbody").html(henkilotTaulukko);
+            });
+        }
+
+        $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
+            päivitäHenkilölista();
+        });
+
+    </script>
+}
+
+
+<h2>Henkilöt</h2>
+
+<p>Listattuna kuten ohjelmoinnin jatkokurssilla tehtiin.</p>
+<table class="table table-striped" id="henkilötListana">
+    <thead>
+        <tr>
+            <th>HenkilöId</th>
+            <th>Etunimi</th>
+            <th>Sukunimi</th>
+        </tr>
+    </thead>
+    <tbody></tbody> <!-- Henkilöt listataan tähän -->
+</table>

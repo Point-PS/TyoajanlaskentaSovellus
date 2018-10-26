@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using TyoajanlaskentaSovellus.Models;
 
 namespace TyoajanlaskentaSovellus.Controllers
 {
@@ -27,11 +29,41 @@ namespace TyoajanlaskentaSovellus.Controllers
             return View();
         }
 
-        public ActionResult Ulkoasu()
+        public ActionResult Henkilot()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+
+        public ActionResult Henkilot2()
+        {
+            scrumDatabaseEntities entities = new scrumDatabaseEntities();
+            List<Henkilot> model = entities.Henkilot.ToList();
+            entities.Dispose();
+            return View(model);
+        }
+
+
+
+
+        public JsonResult HaeKaikkiHenkilot()
+        {
+            scrumDatabaseEntities entities = new scrumDatabaseEntities(); 
+
+            var malli = (from h in entities.Henkilot
+                         select new
+                         {
+                             HenkiloId = h.HenkiloId,
+                             Etunimi = h.Etunimi,
+                             Sukunimi = h.Sukunimi
+                         }).ToList();
+
+            string json = JsonConvert.SerializeObject(malli);
+            entities.Dispose();
+
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }
