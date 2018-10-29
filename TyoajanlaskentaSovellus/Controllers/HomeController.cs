@@ -44,6 +44,11 @@ namespace TyoajanlaskentaSovellus.Controllers
             return View();
         }
 
+        public ActionResult HenkilotDisa()
+        {
+            return View();
+        }
+
         public ActionResult Henkilot2()
         {
             scrumDatabaseEntities entities = new scrumDatabaseEntities();
