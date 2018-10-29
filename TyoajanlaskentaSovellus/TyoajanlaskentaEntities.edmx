@@ -4,70 +4,70 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="scrumDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Henkilot">
-          <Key>
-            <PropertyRef Name="HenkiloId" />
-          </Key>
-          <Property Name="HenkiloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Etunimi" Type="varchar" MaxLength="50" />
-          <Property Name="Sukunimi" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Tunnit">
-          <Key>
-            <PropertyRef Name="TuntiId" />
-          </Key>
-          <Property Name="TuntiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HenkiloId" Type="int" Nullable="false" />
-          <Property Name="TyoId" Type="int" Nullable="false" />
-          <Property Name="Tuntimaara" Type="time" Precision="7" />
-        </EntityType>
-        <EntityType Name="Tyot">
-          <Key>
-            <PropertyRef Name="TyoId" />
-          </Key>
-          <Property Name="TyoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Tyotunniste" Type="varchar" MaxLength="10" />
-          <Property Name="Kuvaus" Type="varchar" MaxLength="255" />
-        </EntityType>
-        <Association Name="Fk_Tunnit_Henkilot">
-          <End Role="Henkilot" Type="Self.Henkilot" Multiplicity="1" />
-          <End Role="Tunnit" Type="Self.Tunnit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Henkilot">
-              <PropertyRef Name="HenkiloId" />
-            </Principal>
-            <Dependent Role="Tunnit">
-              <PropertyRef Name="HenkiloId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Fk_Tunnit_Tyot">
-          <End Role="Tyot" Type="Self.Tyot" Multiplicity="1" />
-          <End Role="Tunnit" Type="Self.Tunnit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tyot">
-              <PropertyRef Name="TyoId" />
-            </Principal>
-            <Dependent Role="Tunnit">
-              <PropertyRef Name="TyoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="scrumDatabaseModelStoreContainer">
-          <EntitySet Name="Henkilot" EntityType="Self.Henkilot" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tunnit" EntityType="Self.Tunnit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tyot" EntityType="Self.Tyot" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="Fk_Tunnit_Henkilot" Association="Self.Fk_Tunnit_Henkilot">
-            <End Role="Henkilot" EntitySet="Henkilot" />
-            <End Role="Tunnit" EntitySet="Tunnit" />
-          </AssociationSet>
-          <AssociationSet Name="Fk_Tunnit_Tyot" Association="Self.Fk_Tunnit_Tyot">
-            <End Role="Tyot" EntitySet="Tyot" />
-            <End Role="Tunnit" EntitySet="Tunnit" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="scrumDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="scrumDatabaseModelStoreContainer">
+    <EntitySet Name="Henkilot" EntityType="scrumDatabaseModel.Store.Henkilot" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tunnit" EntityType="scrumDatabaseModel.Store.Tunnit" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tyot" EntityType="scrumDatabaseModel.Store.Tyot" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="Fk_Tunnit_Henkilot" Association="scrumDatabaseModel.Store.Fk_Tunnit_Henkilot">
+      <End Role="Henkilot" EntitySet="Henkilot" />
+      <End Role="Tunnit" EntitySet="Tunnit" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_Tunnit_Tyot" Association="scrumDatabaseModel.Store.Fk_Tunnit_Tyot">
+      <End Role="Tyot" EntitySet="Tyot" />
+      <End Role="Tunnit" EntitySet="Tunnit" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Henkilot">
+    <Key>
+      <PropertyRef Name="HenkiloId" />
+    </Key>
+    <Property Name="HenkiloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Etunimi" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Sukunimi" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tunnit">
+    <Key>
+      <PropertyRef Name="TuntiId" />
+    </Key>
+    <Property Name="TuntiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HenkiloId" Type="int" Nullable="false" />
+    <Property Name="TyoId" Type="int" Nullable="false" />
+    <Property Name="Tuntimaara" Type="time" Nullable="true" Precision="7" />
+  </EntityType>
+  <EntityType Name="Tyot">
+    <Key>
+      <PropertyRef Name="TyoId" />
+    </Key>
+    <Property Name="TyoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tyotunniste" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="Kuvaus" Type="varchar" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <Association Name="Fk_Tunnit_Henkilot">
+    <End Role="Henkilot" Type="scrumDatabaseModel.Store.Henkilot" Multiplicity="1" />
+    <End Role="Tunnit" Type="scrumDatabaseModel.Store.Tunnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Henkilot">
+        <PropertyRef Name="HenkiloId" />
+      </Principal>
+      <Dependent Role="Tunnit">
+        <PropertyRef Name="HenkiloId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_Tunnit_Tyot">
+    <End Role="Tyot" Type="scrumDatabaseModel.Store.Tyot" Multiplicity="1" />
+    <End Role="Tunnit" Type="scrumDatabaseModel.Store.Tunnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tyot">
+        <PropertyRef Name="TyoId" />
+      </Principal>
+      <Dependent Role="Tunnit">
+        <PropertyRef Name="TyoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="scrumDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -143,35 +143,35 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="scrumDatabaseModelStoreContainer" CdmEntityContainer="scrumDatabaseEntities">
-          <EntitySetMapping Name="Henkilot">
-            <EntityTypeMapping TypeName="scrumDatabaseModel.Henkilot">
-              <MappingFragment StoreEntitySet="Henkilot">
-                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
-                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
-                <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tunnit">
-            <EntityTypeMapping TypeName="scrumDatabaseModel.Tunnit">
-              <MappingFragment StoreEntitySet="Tunnit">
-                <ScalarProperty Name="Tuntimaara" ColumnName="Tuntimaara" />
-                <ScalarProperty Name="TyoId" ColumnName="TyoId" />
-                <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
-                <ScalarProperty Name="TuntiId" ColumnName="TuntiId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tyot">
-            <EntityTypeMapping TypeName="scrumDatabaseModel.Tyot">
-              <MappingFragment StoreEntitySet="Tyot">
-                <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
-                <ScalarProperty Name="Tyotunniste" ColumnName="Tyotunniste" />
-                <ScalarProperty Name="TyoId" ColumnName="TyoId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+    <EntitySetMapping Name="Henkilot">
+      <EntityTypeMapping TypeName="IsTypeOf(scrumDatabaseModel.Henkilot)">
+        <MappingFragment StoreEntitySet="Henkilot">
+          <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
+          <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
+          <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tunnit">
+      <EntityTypeMapping TypeName="IsTypeOf(scrumDatabaseModel.Tunnit)">
+        <MappingFragment StoreEntitySet="Tunnit">
+          <ScalarProperty Name="TuntiId" ColumnName="TuntiId" />
+          <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
+          <ScalarProperty Name="TyoId" ColumnName="TyoId" />
+          <ScalarProperty Name="Tuntimaara" ColumnName="Tuntimaara" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tyot">
+      <EntityTypeMapping TypeName="IsTypeOf(scrumDatabaseModel.Tyot)">
+        <MappingFragment StoreEntitySet="Tyot">
+          <ScalarProperty Name="TyoId" ColumnName="TyoId" />
+          <ScalarProperty Name="Tyotunniste" ColumnName="Tyotunniste" />
+          <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
