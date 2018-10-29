@@ -48,6 +48,10 @@ namespace TyoajanlaskentaSovellus.Controllers
         {
             return View();
         }
+        public ActionResult HenkilotBo()
+        {
+            return View();
+        }
 
         public ActionResult Henkilot2()
         {

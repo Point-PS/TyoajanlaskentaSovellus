@@ -320,6 +320,7 @@
     <Content Include="Views\Home\HenkilotTesti.cshtml" />
     <Content Include="Views\Home\HenkilotEmma.cshtml" />
     <Content Include="Views\Home\HenkilotDisa.cshtml" />
+    <Content Include="Views\Home\HenkilotBo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -351,7 +352,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25234</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
