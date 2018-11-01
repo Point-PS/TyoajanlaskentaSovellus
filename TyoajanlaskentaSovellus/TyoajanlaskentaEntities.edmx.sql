@@ -39,8 +39,8 @@ IF OBJECT_ID(N'[dbo].[Tyot]', 'U') IS NOT NULL
 GO
 
 -- --------------------------------------------------
--- Creating all tables
 -- --------------------------------------------------
+-- Creating all tables
 
 -- Creating table 'Henkilot'
 CREATE TABLE [dbo].[Henkilot] (

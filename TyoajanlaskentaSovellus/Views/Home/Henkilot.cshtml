@@ -23,6 +23,9 @@
                 }
 
                 $("#henkilötListana tbody").html(henkilotTaulukko);
+
+                
+                
             });
         }
 
@@ -33,7 +36,7 @@
     </script>
 }
 
-
+<button class="btn btn-info" id="henkiloModallisaaUusiHenkiloButton">Lisää uusi</button>
 <h2>Henkilöt</h2>
 
 <p>Listattuna kuten ohjelmoinnin jatkokurssilla tehtiin.</p>
@@ -47,3 +50,33 @@
     </thead>
     <tbody></tbody> <!-- Henkilöt listataan tähän -->
 </table>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="henkiloModalDialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><span id="henkiloModalTitle">Muokkaa henkilöä</span></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">HenkilöID</div>
+                    <div class="col-md-6"><input class="form-control" id="henkiloModal_HenkiloID" type="text" readonly></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Etunimi</div>
+                    <div class="col-md-6"><input class="form-control" id="henkiloModal_Etunimi" type="text"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Sukunimi</div>
+                    <div class="col-md-6"><input class="form-control" id="henkiloModal_Sukunimi" type="text"></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="henkiloModalSaveButton">Tallenna</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
