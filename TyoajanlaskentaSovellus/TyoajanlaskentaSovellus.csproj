@@ -321,6 +321,7 @@
     <Content Include="Views\Home\HenkilotEmma.cshtml" />
     <Content Include="Views\Home\HenkilotDisa.cshtml" />
     <Content Include="Views\Home\HenkilotBo.cshtml" />
+    <Content Include="Views\Home\HenkilotHenri.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
