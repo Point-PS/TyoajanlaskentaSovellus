@@ -30,6 +30,25 @@
             päivitäHenkilölista();
         });
 
+        $(".glyphicon-trash").click(function () {
+
+            console.log("Poistoa klikattu");
+            var HenkiloId = $(this).parent().parent().prev().prev().text();
+            var ok = confirm("Haluatko varmasti poistaahenkilön " + HenkiloId + "?");
+
+            if (ok == true) {
+                $.getJSON("henkilot/delete/" + HenkiloId, null, function (status) {
+                    if (status == true) {
+                        alert(Henkilö on nyt poistettu!");
+				päivitäHenkilölista();
+                    }
+                    else {
+                        alert("Poistaminen ei onnistunut, yritä uudelleen!");
+                    }
+                });
+            }
+        });
+
     </script>
 }
 

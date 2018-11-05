@@ -46,7 +46,38 @@ namespace TyoajanlaskentaSovellus.Controllers
 
         public ActionResult HenkilotDisa()
         {
-            return View();
+            scrumDatabaseEntities entities = new scrumDatabaseEntities();
+            List<Henkilot> model = entities.Henkilot.ToList();
+            entities.Dispose();
+            return View(model);
+
+            public ActionResult Delete(string id)
+            {
+                int HenkiloId = int.Parse(id);
+
+                scrumDatabaseEntities entities = new scrumDatabaseEntities();
+
+                //id:n perusteella rivi kannasta-->
+                bool OK = false;
+
+                Henkilot dbItemn = (from h in entities.Henkilot
+                                    where h.HenkiloId == HenkiloId
+                                    select h).FirstOrDefault();
+
+                if (dbItem != null)
+                {
+                    //tietokannasta poisto-->
+                    entities.Henkilot.Remove(dbItem);
+                    entities.SaveChanges();
+                    OK = true;
+
+                }
+
+
+                entities.Dispose();
+                return Json(OK, JsonRequestBehavior.AllowGet);
+
+            }
         }
         public ActionResult HenkilotBo()
         {

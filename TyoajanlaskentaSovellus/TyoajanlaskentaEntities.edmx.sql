@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/29/2018 19:08:06
--- Generated from EDMX file: C:\Users\ville\source\repos\TyoajanlaskentaSovellus\TyoajanlaskentaSovellus\TyoajanlaskentaEntities.edmx
+-- Date Created: 11/05/2018 15:43:54
+-- Generated from EDMX file: C:\Users\sundv\Source\Repos\Point-PS\TyoajanlaskentaSovellus\TyoajanlaskentaSovellus\TyoajanlaskentaEntities.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [scrumDatabase];
+USE [ScrumDatabase];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -39,8 +39,8 @@ IF OBJECT_ID(N'[dbo].[Tyot]', 'U') IS NOT NULL
 GO
 
 -- --------------------------------------------------
--- --------------------------------------------------
 -- Creating all tables
+-- --------------------------------------------------
 
 -- Creating table 'Henkilot'
 CREATE TABLE [dbo].[Henkilot] (
