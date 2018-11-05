@@ -33,6 +33,21 @@ namespace TyoajanlaskentaSovellus.Controllers
         {
             return View();
         }
+        public ActionResult Tyot()
+        {
+            return View();
+        }
+
+        public ActionResult Tunnit()
+        {
+            return View();
+        }
+
+        public ActionResult Raportti()
+        {
+            return View();
+        }
+
 
         public ActionResult HenkilotTesti()
         {
@@ -44,41 +59,41 @@ namespace TyoajanlaskentaSovellus.Controllers
             return View();
         }
 
-        public ActionResult HenkilotDisa()
-        {
-            scrumDatabaseEntities entities = new scrumDatabaseEntities();
-            List<Henkilot> model = entities.Henkilot.ToList();
-            entities.Dispose();
-            return View(model);
+        //public ActionResult HenkilotDisa()
+        //{
+        //    scrumDatabaseEntities entities = new scrumDatabaseEntities();
+        //    List<Henkilot> model = entities.Henkilot.ToList();
+        //    entities.Dispose();
+        //    return View(model);
 
-            public ActionResult Delete(string id)
-            {
-                int HenkiloId = int.Parse(id);
+        //    public ActionResult Delete(string id)
+        //    {
+        //        int HenkiloId = int.Parse(id);
 
-                scrumDatabaseEntities entities = new scrumDatabaseEntities();
+        //        scrumDatabaseEntities entities = new scrumDatabaseEntities();
 
-                //id:n perusteella rivi kannasta-->
-                bool OK = false;
+        //        //id:n perusteella rivi kannasta-->
+        //        bool OK = false;
 
-                Henkilot dbItemn = (from h in entities.Henkilot
-                                    where h.HenkiloId == HenkiloId
-                                    select h).FirstOrDefault();
+        //        Henkilot dbItemn = (from h in entities.Henkilot
+        //                            where h.HenkiloId == HenkiloId
+        //                            select h).FirstOrDefault();
 
-                if (dbItem != null)
-                {
-                    //tietokannasta poisto-->
-                    entities.Henkilot.Remove(dbItem);
-                    entities.SaveChanges();
-                    OK = true;
+        //        if (dbItem != null)
+        //        {
+        //            //tietokannasta poisto-->
+        //            entities.Henkilot.Remove(dbItem);
+        //            entities.SaveChanges();
+        //            OK = true;
 
-                }
+        //        }
 
 
-                entities.Dispose();
-                return Json(OK, JsonRequestBehavior.AllowGet);
+        //        entities.Dispose();
+        //        return Json(OK, JsonRequestBehavior.AllowGet);
 
-            }
-        }
+        //    }
+        //}
         public ActionResult HenkilotBo()
         {
             return View();

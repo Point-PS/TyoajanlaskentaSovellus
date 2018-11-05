@@ -34,18 +34,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Henkilot", "Henkilot", "Home")</li>
-
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Hiekkalaatikot<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("HenkilotEmma", "HenkilotEmma", "Home")</li>
-                            <li>@Html.ActionLink("HenkilotTesti", "HenkilotTesti", "Home")</li>
-                            <li>@Html.ActionLink("HenkilotDisa", "HenkilotDisa", "Home")</li>
-                            <li>@Html.ActionLink("HenkilotBo", "HenkilotBo", "Home")</li>
-                            <li>@Html.ActionLink("HenkilotHenri", "HenkilotHenri", "Home")</li>
-                        </ul>
-                    </li>
-
+                    <li>@Html.ActionLink("Tyot", "Tyot", "Home")</li>
+                    <li>@Html.ActionLink("Tunnit", "Tunnit", "Home")</li>
+                    <li>@Html.ActionLink("Raportti", "Raportti", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

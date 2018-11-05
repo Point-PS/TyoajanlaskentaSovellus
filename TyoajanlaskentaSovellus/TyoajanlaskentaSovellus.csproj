@@ -190,8 +190,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HenkilotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RaporttiController.cs" />
+    <Compile Include="Controllers\TunnitController.cs" />
+    <Compile Include="Controllers\TyotController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -322,9 +326,13 @@
     <Content Include="Views\Home\HenkilotDisa.cshtml" />
     <Content Include="Views\Home\HenkilotBo.cshtml" />
     <Content Include="Views\Home\HenkilotHenri.cshtml" />
+    <Content Include="Views\Home\Tyot.cshtml" />
+    <Content Include="Views\Home\Tunnit.cshtml" />
+    <Content Include="Views\Home\Raportti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Henkilot\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
