@@ -20,24 +20,82 @@
                         "<td>" + tyot[i].TyoId + "</td>" +
                         "<td>" + tyot[i].Tyotunniste + "</td>" +
                         "<td>" + tyot[i].Kuvaus + "</td>" +
+                        "<td><a href='#'><span class='glyphicon glyphicon-trash' ></span ></a ></td > " +
                         "</tr>\r\n";
                 }
 
                 $("#työtListana tbody").html(tyotTaulukko);
 
+                $("#tyoModallisaaUusiButton").click(function () {
+
+                    //tyhjennetään ikkunan tiedot
+                    $("#tyoModal_TyoID").val(("uusi"));
+                    $("#tyoModal_Tyotunniste").val("");
+                    $("#tyoModal_Kuvaus").val("");
+
+
+                    $("#tyoModalTitle").text("Lisää uusi työ");
+                    $("#tyoModalDialog").modal("show");
+                });
+
+                $("#tyoModalSaveButton").click(function () {
+
+                    var details = {
+                        TyoId: $("#tyoModal_TyoID").val(),
+                        Tyotunniste: $("#tyoModal_Tyotunniste").val(),
+                        Kuvaus: $("#tyoModal_Kuvaus").val(),
+
+                    };
+
+                    $.post("/Tyot/Update/", details, function (status) {
+                        if (status == true) {
+                            alert("Tiedot tallennettu!");
+                            $("#tyoModalDialog").modal("hide");
+                            päivitäTyölistaus();
+                        }
+                        else {
+                            alert("Tallennus ei onnistunut, tarkista uudelleen!");
+                        }
+
+                    });
+
+                });
+
+                //Tietojen poisto
+                $(".glyphicon-trash").click(function () {
+
+                    //etsitään asiakkaan tiedot klikatulta riviltä
+                    console.log("Poistoa klikattu");
+                    var tyoID = $(this).parent().parent().prev().prev().prev().text();
+                    var ok = confirm("haluatko varmasti poistaa työtiedot " + tyoID + "?");
+
+                    if (ok == true) {
+                        $.getJSON("/Tyot/Delete/" + tyoID, null, function (status) {
+                            if (status == true) {
+                                alert("Työtiedot on poistettu!");
+                                päivitäTyölistaus();
+                            }
+                            else {
+                                alert("poistaminen ei onnistunut, tarkista tiedot!");
+
+                            }
+                        });
+                    }
+                });
+
                 $(".glyphicon-pencil").click(function () {
 
                     //etsitään asiakkaan tiedot klikatulta riviltä
-                    var henkiloId = $(this).parent().parent().next().text();
-                    alert(henkiloId);
+                    var tyoId = $(this).parent().parent().next().text();
+                    //alert(tyoId);
                     //haetaan asiakkaan tiedot id:n perusteella
-                    $.getJSON("/tyot/getsingletyo/" + henkiloId, null, function (json2) {
-                        var henkilo = JSON.parse(json2);
+                    $.getJSON("/tyot/getsingletyo/" + tyoId, null, function (json2) {
+                        var tyot = JSON.parse(json2);
 
                         // kopioidaan tiedot ikkunaan
-                        $("#tyoModal_TyoID").val(henkilo.HenkiloID);
-                        $("#tyoModal_Tyotunniste").val(henkilo.Etunimi);
-                        $("#tyoModal_Kuvaus").val(henkilo.Sukunimi);
+                        $("#tyoModal_TyoID").val(tyot.TyoId);
+                        $("#tyoModal_Tyotunniste").val(tyot.Tyotunniste);
+                        $("#tyoModal_Kuvaus").val(tyot.Kuvaus);
                         
 
                         // näytetään ikkuna
@@ -49,7 +107,9 @@
 
             });
         }
-
+        
+            
+        
         $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
             päivitäTyölista();
         });
