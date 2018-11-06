@@ -8,7 +8,7 @@ namespace TyoajanlaskentaSovellus.Controllers
 {
     public class HenkilotController : Controller
     {
-        // GET: Henkilot
+        
         public ActionResult Index()
         {
             return View();

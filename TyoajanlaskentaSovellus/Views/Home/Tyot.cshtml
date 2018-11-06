@@ -1,3 +1,82 @@
 ﻿@{
-    ViewBag.Title = "Tyot";
+    ViewBag.Title = "Työt";
 }
+
+@section scripts {
+    <script type="text/javascript">
+        function päivitäTyölista() {
+
+            $.getJSON("/Tyot/HaeKaikkiTyot", null, function (json) {
+                var tyot = JSON.parse(json);
+
+                console.log(json); // selaimen f12-työkalut, valitse console ja katso mitä tapahtuu
+                console.log(tyot);
+
+                var tyotTaulukko = "";
+
+                for (var i = 0; i < tyot.length; i++) {
+                    tyotTaulukko += "<tr>" +
+                        "<td>" + tyot[i].TyoId + "</td>" +
+                        "<td>" + tyot[i].Tyotunniste + "</td>" +
+                        "<td>" + tyot[i].Kuvaus + "</td>" +
+                        "</tr>\r\n";
+                }
+
+                $("#työtListana tbody").html(tyotTaulukko);
+
+
+
+            });
+        }
+
+        $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
+            päivitäTyölista();
+        });
+
+    </script>
+}
+
+<button class="btn btn-info" id="tyoModallisaaUusiButton">Lisää uusi</button>
+<h2>Työt</h2>
+
+<p>Listattuna kuten ohjelmoinnin jatkokurssilla tehtiin.</p>
+<table class="table table-striped" id="työtListana">
+    <thead>
+        <tr>
+            <th>TyöId</th>
+            <th>Työtunniste</th>
+            <th>Kuvaus</th>
+        </tr>
+    </thead>
+    <tbody></tbody> <!-- Työt listataan tähän -->
+</table>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="tyoModalDialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><span id="tyoModalTitle">Muokkaa työtä</span></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">TyöID</div>
+                    <div class="col-md-6"><input class="form-control" id="tyoModal_TyoID" type="text" readonly></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Työtunniste</div>
+                    <div class="col-md-6"><input class="form-control" id="tyoModal_Tyotunniste" type="text"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Kuvaus</div>
+                    <div class="col-md-6"><input class="form-control" id="tyoModal_Kuvaus" type="text"></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="tyoModalSaveButton">Tallenna</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
