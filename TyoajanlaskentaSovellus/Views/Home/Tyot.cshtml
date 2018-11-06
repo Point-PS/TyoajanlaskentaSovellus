@@ -16,6 +16,7 @@
 
                 for (var i = 0; i < tyot.length; i++) {
                     tyotTaulukko += "<tr>" +
+                        "<td><a href='#'><span class='glyphicon glyphicon-pencil' ></span ></a ></td > " +
                         "<td>" + tyot[i].TyoId + "</td>" +
                         "<td>" + tyot[i].Tyotunniste + "</td>" +
                         "<td>" + tyot[i].Kuvaus + "</td>" +
@@ -24,7 +25,27 @@
 
                 $("#työtListana tbody").html(tyotTaulukko);
 
+                $(".glyphicon-pencil").click(function () {
 
+                    //etsitään asiakkaan tiedot klikatulta riviltä
+                    var henkiloId = $(this).parent().parent().next().text();
+                    alert(henkiloId);
+                    //haetaan asiakkaan tiedot id:n perusteella
+                    $.getJSON("/tyot/getsingletyo/" + henkiloId, null, function (json2) {
+                        var henkilo = JSON.parse(json2);
+
+                        // kopioidaan tiedot ikkunaan
+                        $("#tyoModal_TyoID").val(henkilo.HenkiloID);
+                        $("#tyoModal_Tyotunniste").val(henkilo.Etunimi);
+                        $("#tyoModal_Kuvaus").val(henkilo.Sukunimi);
+                        
+
+                        // näytetään ikkuna
+                        $("#tyoModalTitle").text("Muokkaa työtä");
+                        $("#tyoModalDialog").modal("show");
+
+                    });
+                });
 
             });
         }
