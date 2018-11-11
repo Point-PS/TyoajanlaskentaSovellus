@@ -3,80 +3,169 @@
 }
 
 @section scripts {
+
+
+
     <script type="text/javascript">
-        function päivitäHenkilölista() {
 
-            $.getJSON("/Home/HaeKaikkiHenkilot", null, function (json) {
+        function päivitäHenkilolistaus() {
+            $.getJSON("/henkilot/getlist", null, function (json) {
                 var henkilot = JSON.parse(json);
+                //alert("Henkilöiden lkm: " + henkilot.length);
 
-                console.log(json); // selaimen f12-työkalut, valitse console ja katso mitä tapahtuu
-                console.log(henkilot);
-
-                var henkilotTaulukko = "";
-
-                for (var i = 0; i < henkilot.length; i++) {
-                    henkilotTaulukko += "<tr>" +
-                        "<td>" + henkilot[i].HenkiloId + "</td>" +
-                        "<td>" + henkilot[i].Etunimi + "</td>" +
-                        "<td>" + henkilot[i].Sukunimi + "</td>" +
+                var html = "";
+                for (var index = 0; index < henkilot.length; index++) {
+                    html += "<tr>" +
+                        "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>" +
+                        "<td>" + henkilot[index].HenkiloId + "</td>" +
+                        "<td>" + henkilot[index].Etunimi + "</td>" +
+                        "<td>" + henkilot[index].Sukunimi + "</td>" +
+                        "<td><a href='#'><span class='glyphicon glyphicon-trash'></span></a></td>" +
                         "</tr>\r\n";
                 }
 
-                $("#henkilötListana tbody").html(henkilotTaulukko);
+                $("#henkilotList tbody").html(html);
 
-                
-                
+                // tietojen muokkaus
+                "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + henkilot[i].HenkiloId + "'></span></a></td>" +
+
+               // $(".glyphicon-pencil").click(function () {
+                    // etsitään henkilön tiedot klikatulta riviltä
+                   // var HenkiloId = $(this).parent().parent().next().text();
+                    //alert(HenkiloId);
+
+                    // haetaan asiakkaan tiedot id:n perusteella
+                    $.getJSON("/henkilot/getsinglehenkilo/" + HenkiloId, null, function (json2) {
+                        var henkilot = JSON.parse(json2);
+
+                        // kopioidaan tiedot ikkunaan
+                        $("#henkilotModal_HenkId").val(henkilot.HenkiloId);
+                        $("#henkilotModal_Etunimi").val(henkilot.Etunimi);
+                        $("#henkilotModal_Sukunimi").val(henkilot.Sukunimi);
+
+                        // näytetään ikkuna
+                        $("#henkilotModalTitle").text("Muokkaa henkilöä");
+                        $("#henkilotModalDialog").modal("show");
+                    });
+                });
+
+                // tietojen poisto
+                $(".glyphicon-trash").click(function () {
+                    // etsitään henkilön tiedot klikatulta riviltä
+                    console.log("Poistoa klikattu");
+                    //var HenkiloId = $(this).parent().parent().prev().prev().prev().prev().prev().text();
+
+                    "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + henkilot[i].HenkiloId + "'></span></a></td>" +
+
+                    var ok = confirm("Haluatko varmasti poistaa henkilön " + HenkiloId + "?");
+
+                    if (ok == true) {
+                        $.getJSON("/henkilot/delete/" + HenkiloId, null, function (status) {
+                            if (status == true) {
+                                alert("Henkilö on nyt poistettu!");
+                                päivitäHenkilolistaus();
+                            }
+                            else {
+                                alert("Poistaminen ei onnistunut, yritä uudelleen!");
+                            }
+                        });
+                    }
+                });
             });
         }
 
-        $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
-            päivitäHenkilölista();
+        // sivun alustaminen
+        $(function () {
+            päivitäHenkilolistaus();
+
+            $("#addNewHenkiloButton").click(function () {
+
+                // tyhjennetään ikkunan tiedot
+                $("#henkilotModal_HenkiloId").val("(uusi)");
+                $("#henkilotModal_Etunimi").val("");
+                $("#henkilotModal_Sukunimi").val("");
+
+                $("#henkilotModalTitle").text("Lisää uusi Henkilö");
+                $("#henkilotModalDialog").modal("show");
+            });
+
+            $("#henkilotModalSaveButton").click(function () {
+                // luetaan käyttäjän syöttämät kentät
+                var details = {
+                    HenkiloId: $("#henkilotModal_HenkId").val(),
+                    Etunimi: $("#henkilotModal_Etunimi").val(),
+                    Sukunimi: $("#henkilotModal_Sukunimi").val(),
+                };
+
+                $.post("/henkilot/update/", details, function (status) {
+                    if (status == true) {
+                        alert("Uudet tiedot tallennettu!");
+                        $("#henkilotModalDialog").modal("hide");
+                        päivitäHenkilolistaus();
+                    }
+                    else {
+                        alert("Tallennus ei onnistunut, yritä uudelleen!");
+                    }
+                });
+            });
+
+            console.log("Alustus valmis!");
         });
-
     </script>
-}
 
-<button class="btn btn-info" id="henkiloModallisaaUusiHenkiloButton">Lisää uusi</button>
+}
 <h2>Henkilöt</h2>
 
-<p>Listattuna kuten ohjelmoinnin jatkokurssilla tehtiin.</p>
-<table class="table table-striped" id="henkilötListana">
+<button class="btn btn-primary" id="addNewHenkiloButton">Lisää uusi</button>
+
+<table class="table table-striped" id="henkilotList">
     <thead>
         <tr>
-            <th>HenkilöId</th>
+            <th></th>
+            <th>Henkilo-id</th>
             <th>Etunimi</th>
             <th>Sukunimi</th>
         </tr>
     </thead>
-    <tbody></tbody> <!-- Henkilöt listataan tähän -->
+    <tbody></tbody>
 </table>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="henkiloModalDialog">
+
+<div class="modal fade" tabindex="-1" role="dialog" id="henkilotModalDialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><span id="henkiloModalTitle">Muokkaa henkilöä</span></h4>
+                <h4 class="modal-title"><span id="henkilotModalTitle">Muokkaa henkilöä</span></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-3">HenkilöID</div>
-                    <div class="col-md-6"><input class="form-control" id="henkiloModal_HenkiloID" type="text" readonly></div>
+                    <div class="col-md-6"><input class="form-control" id="henkilotModal_HenkiloID" type="text" readonly></div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Etunimi</div>
-                    <div class="col-md-6"><input class="form-control" id="henkiloModal_Etunimi" type="text"></div>
+                    <div class="col-md-6"><input class="form-control" id="henkilotModal_Etunimi" type="text"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Sukunimi</div>
-                    <div class="col-md-6"><input class="form-control" id="henkiloModal_Sukunimi" type="text"></div>
+                    <div class="col-md-6"><input class="form-control" id="henkilotModal_Sukunimi" type="text"></div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="henkiloModalSaveButton">Tallenna</button>
+                <button type="button" class="btn btn-success" id="henkilotModalSaveButton">Tallenna</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
