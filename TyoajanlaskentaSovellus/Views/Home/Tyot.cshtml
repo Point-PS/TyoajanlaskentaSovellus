@@ -9,8 +9,8 @@
             $.getJSON("/Tyot/HaeKaikkiTyot", null, function (json) {
                 var tyot = JSON.parse(json);
 
-                console.log(json); // selaimen f12-työkalut, valitse console ja katso mitä tapahtuu
-                console.log(tyot);
+                //console.log(json); // selaimen f12-työkalut, valitse console ja katso mitä tapahtuu
+                //console.log(tyot);
 
                 var tyotTaulukko = "";
 
@@ -26,40 +26,7 @@
 
                 $("#työtListana tbody").html(tyotTaulukko);
 
-                $("#tyoModallisaaUusiButton").click(function () {
-
-                    //tyhjennetään ikkunan tiedot
-                    $("#tyoModal_TyoID").val(("uusi"));
-                    $("#tyoModal_Tyotunniste").val("");
-                    $("#tyoModal_Kuvaus").val("");
-
-
-                    $("#tyoModalTitle").text("Lisää uusi työ");
-                    $("#tyoModalDialog").modal("show");
-                });
-
-                $("#tyoModalSaveButton").click(function () {
-
-                    var details = {
-                        TyoId: $("#tyoModal_TyoID").val(),
-                        Tyotunniste: $("#tyoModal_Tyotunniste").val(),
-                        Kuvaus: $("#tyoModal_Kuvaus").val(),
-
-                    };
-
-                    $.post("/Tyot/Update/", details, function (status) {
-                        if (status == true) {
-                            alert("Tiedot tallennettu!");
-                            $("#tyoModalDialog").modal("hide");
-                            päivitäTyölistaus();
-                        }
-                        else {
-                            alert("Tallennus ei onnistunut, tarkista uudelleen!");
-                        }
-
-                    });
-
-                });
+               
 
                 //Tietojen poisto
                 $(".glyphicon-trash").click(function () {
@@ -73,7 +40,7 @@
                         $.getJSON("/Tyot/Delete/" + tyoID, null, function (status) {
                             if (status == true) {
                                 alert("Työtiedot on poistettu!");
-                                päivitäTyölistaus();
+                                päivitäTyölista();
                             }
                             else {
                                 alert("poistaminen ei onnistunut, tarkista tiedot!");
@@ -96,7 +63,7 @@
                         $("#tyoModal_TyoID").val(tyot.TyoId);
                         $("#tyoModal_Tyotunniste").val(tyot.Tyotunniste);
                         $("#tyoModal_Kuvaus").val(tyot.Kuvaus);
-                        
+
 
                         // näytetään ikkuna
                         $("#tyoModalTitle").text("Muokkaa työtä");
@@ -107,11 +74,46 @@
 
             });
         }
-        
-            
-        
+
+
+
         $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
             päivitäTyölista();
+            console.log("sivu alustettu");
+             $("#tyoModallisaaUusiButton").click(function () {
+
+                    //tyhjennetään ikkunan tiedot
+                    $("#tyoModal_TyoID").val(("0"));
+                    $("#tyoModal_Tyotunniste").val("");
+                    $("#tyoModal_Kuvaus").val("");
+
+
+                    $("#tyoModalTitle").text("Lisää uusi työ");
+                    $("#tyoModalDialog").modal("show");
+                });
+
+                $("#tyoModalSaveButton").click(function () {
+
+                    var details = {
+                        TyoId: $("#tyoModal_TyoID").val(),
+                        Tyotunniste: $("#tyoModal_Tyotunniste").val(),
+                        Kuvaus: $("#tyoModal_Kuvaus").val(),
+
+                    };
+
+                    $.post("/Tyot/Update/", details, function (status) {
+                        if (status == true) {
+                            alert("Tiedot tallennettu!");
+                            $("#tyoModalDialog").modal("hide");
+                            päivitäTyölista();
+                        }
+                        else {
+                            alert("Tallennus ei onnistunut, tarkista uudelleen!");
+                        }
+
+                    });
+
+                });
         });
 
     </script>
@@ -120,13 +122,14 @@
 <button class="btn btn-info" id="tyoModallisaaUusiButton">Lisää uusi</button>
 <h2>Työt</h2>
 
-<p>Listattuna kuten ohjelmoinnin jatkokurssilla tehtiin.</p>
 <table class="table table-striped" id="työtListana">
     <thead>
         <tr>
+            <th></th>
             <th>TyöId</th>
             <th>Työtunniste</th>
             <th>Kuvaus</th>
+            <th></th>
         </tr>
     </thead>
     <tbody></tbody> <!-- Työt listataan tähän -->

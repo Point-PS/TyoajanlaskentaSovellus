@@ -34,7 +34,9 @@ namespace TyoajanlaskentaSovellus.Controllers
                 // tallennus tietokantaan
                 entities.Tyot.Add(dbItem);
                 entities.SaveChanges();
+                entities.Dispose();
                 OK = true;
+                return Json(OK, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -49,12 +51,16 @@ namespace TyoajanlaskentaSovellus.Controllers
 
                     // tallennus tietokantaan
                     entities.SaveChanges();
-                    OK = true;
-                }
-            }
-            entities.Dispose();
+                    entities.Dispose();
+                };
 
-            return Json(OK, JsonRequestBehavior.AllowGet);
+                OK = true;
+          
+
+                return Json(OK, JsonRequestBehavior.AllowGet);
+            }
+            
+
         }
         public JsonResult GetSingleTyo(int id)
     {

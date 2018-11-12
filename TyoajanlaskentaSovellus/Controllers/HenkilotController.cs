@@ -39,7 +39,7 @@ namespace TyoajanlaskentaSovellus.Controllers
             return Json(json, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetSingleHenkilo(string id)
+        public JsonResult GetSingleHenkilot(string id)
         {
             scrumDatabaseEntities entities = new scrumDatabaseEntities();
 
