@@ -10,7 +10,6 @@
                 var tunnit = JSON.parse(json);
                 console.log(tunnit)
 
-
                 var tunnitTaulukko = "";
 
                 for (var i = 0; i < tunnit.length; i++) {
@@ -29,7 +28,7 @@
                 $("#tunnitModalLisaaUusiButton").click(function () {
 
                     //tyhjennetään ikkunan tiedot
-                    $("#tuntiModal_TuntiID").val(("uusi"));
+                    $("#tuntiModal_TuntiID").val(("0"));
                     $("#tuntiModal_HenkiloID").val("");
                     $("#tuntiModal_TyoID").val("");
                     $("#tuntiModal_Tuntimaara").val("");
@@ -43,11 +42,12 @@
 
                     var details = {
                         TuntiId: $("#tuntiModal_TuntiID").val(),
-                        HenkiloId: $("#tuntiModal_´HenkiloID").val(),
+                        HenkiloId: $("#tuntiModal_HenkiloID").val(),
                         TyotId: $("#tuntiModal_TyoID").val(),
                         Tuntimaara: $("#tuntiModal_Tuntimaara").val(),
 
                     };
+                    console.log(details)
                     $.post("/Tunnit/Update/", details, function (status) {
                         if (status == true) {
                             alert("Tiedot tallennettu!");
@@ -95,6 +95,8 @@
 
                         // kopioidaan tiedot ikkunaan
                         $("#tuntiModal_TuntiID").val(tunnit.TuntiId);
+                        $("#tuntiModal_HenkiloID").val(tunnit.HenkiloId);
+                        $("#tuntiModal_TyoID").val(tunnit.TyoId);
                         $("#tuntiModal_Tuntimaara").val(tunnit.Tuntimaara);
 
                         // näytetään ikkuna

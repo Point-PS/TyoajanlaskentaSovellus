@@ -41,12 +41,9 @@ namespace TyoajanlaskentaSovellus.Controllers
                 // kyseessä on uuden tunnin lisääminen, kopioidaan kentät
                 Tunnit dbItem = new Tunnit()
                 {
-                    TuntiId = tunnit.TuntiId,
                     HenkiloId = tunnit.HenkiloId,
                     TyoId = tunnit.TyoId,
                     Tuntimaara = tunnit.Tuntimaara,
-
-
                 };
 
                 // tallennus tietokantaan
