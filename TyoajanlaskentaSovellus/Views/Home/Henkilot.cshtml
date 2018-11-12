@@ -39,7 +39,7 @@
                         var henkilot = JSON.parse(json2);
 
                         // kopioidaan tiedot ikkunaan
-                        $("#henkilotModal_HenkId").val(henkilot.HenkiloId);
+                        $("#henkilotModal_HenkiloId").val(henkilot.HenkiloId);
                         $("#henkilotModal_Etunimi").val(henkilot.Etunimi);
                         $("#henkilotModal_Sukunimi").val(henkilot.Sukunimi);
 
@@ -92,7 +92,7 @@
             $("#henkilotModalSaveButton").click(function () {
                 // luetaan käyttäjän syöttämät kentät
                 var details = {
-                    HenkiloId: $("#henkilotModal_HenkId").val(),
+                    HenkiloId: $("#henkilotModal_HenkiloId").val(),
                     Etunimi: $("#henkilotModal_Etunimi").val(),
                     Sukunimi: $("#henkilotModal_Sukunimi").val(),
                 };
