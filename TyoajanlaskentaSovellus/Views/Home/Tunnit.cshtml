@@ -8,9 +8,8 @@
 
             $.getJSON("/Tunnit/HaeKaikkiTunnit", null, function (json) {
                 var tunnit = JSON.parse(json);
+                console.log(tunnit)
 
-                console.log(json); // selaimen f12-työkalut, valitse console ja katso mitä tapahtuu
-                console.log(tyot);
 
                 var tunnitTaulukko = "";
 
@@ -25,7 +24,7 @@
                         "</tr>\r\n";
                 }
 
-                $("#tunnitListana tbody").html(tyotTaulukko);
+                $("#tunnitListana tbody").html(tunnitTaulukko);
 
                 $("#tunnitModalLisaaUusiButton").click(function () {
 
@@ -95,8 +94,8 @@
                         var tunnit = JSON.parse(json2);
 
                         // kopioidaan tiedot ikkunaan
-                        $("#tuntiModal_TuntiID").val(tyot.TuntiId);
-                        $("#tuntiModal_Tuntimaara").val(tyot.Tuntimaara);
+                        $("#tuntiModal_TuntiID").val(tunnit.TuntiId);
+                        $("#tuntiModal_Tuntimaara").val(tunnit.Tuntimaara);
 
                         // näytetään ikkuna
                         $("#tuntiModalTitle").text("Muokkaa tuntia");
@@ -119,10 +118,12 @@
 <table class="table table-striped" id="tunnitListana">
     <thead>
         <tr>
+            <th></th>
             <th>TuntiId</th>
             <th>HenkiloId</th>
             <th>TyöId</th>
             <th>Tuntimaara</th>
+            <th></th>
         </tr>
     </thead>
     <tbody></tbody> <!-- Tunnit listataan tähän -->

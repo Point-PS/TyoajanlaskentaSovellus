@@ -10,6 +10,25 @@ namespace TyoajanlaskentaSovellus.Controllers
     public class TunnitController : Controller
     {
         // GET: Tunnit
+        public JsonResult HaeKaikkiTunnit()
+        {
+            scrumDatabaseEntities entities = new scrumDatabaseEntities();
+
+            var malli = (from h in entities.Tunnit
+                         select new
+                         {
+                             TuntiId = h.TuntiId,
+                             HenkiloId = h.HenkiloId,
+                             TyoId = h.TyoId,
+                             Tuntimaara = h.Tuntimaara,
+                         }).ToList();
+
+            string json = JsonConvert.SerializeObject(malli);
+            entities.Dispose();
+
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Update(Tunnit tunnit)
         {
             scrumDatabaseEntities entities = new scrumDatabaseEntities();
@@ -39,8 +58,8 @@ namespace TyoajanlaskentaSovellus.Controllers
             {
                 // muokkaus, haetaan id:n perusteella riviä tietokannasta
                 Tunnit dbItem = (from h in entities.Tunnit
-                               where h.TuntiId == tunnit.TuntiId
-                               select h).FirstOrDefault();
+                                 where h.TuntiId == tunnit.TuntiId
+                                 select h).FirstOrDefault();
                 if (dbItem != null)
                 {
                     dbItem.Tuntimaara = tunnit.Tuntimaara;
@@ -66,8 +85,8 @@ namespace TyoajanlaskentaSovellus.Controllers
             // etsitään id:n perusteella asiakasrivi kannasta
             bool ok = false;
             Tunnit dbItem = (from h in entities.Tunnit
-                           where h.TuntiId == id
-                           select h).FirstOrDefault();
+                             where h.TuntiId == id
+                             select h).FirstOrDefault();
             if (dbItem != null)
             {
                 // tietokannasta poisto
@@ -80,30 +99,15 @@ namespace TyoajanlaskentaSovellus.Controllers
             return Json(ok, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult HaeKaikkiTunnit()
-        {
-            scrumDatabaseEntities entities = new scrumDatabaseEntities();
-
-            var malli = (from h in entities.Tunnit
-                         select new
-                         {
-                             TuntiId = h.TuntiId,
-                             HenkiloId = h.HenkiloId,
-                             TyoId = h.TyoId,
-                             Tuntimaara = h.Tuntimaara,
-                         }).ToList();
-
-            string json = JsonConvert.SerializeObject(malli);
-            entities.Dispose();
-
-            return Json(json, JsonRequestBehavior.AllowGet);
-        }
+ 
         public JsonResult GetSingleTunti(int id)
         {
 
             {
                 scrumDatabaseEntities entities = new scrumDatabaseEntities();
-                var malli = (from h.TuntiId == id
+
+                var malli = (from h in entities.Tunnit
+                             where h.TuntiId == id
                              select new
                              {
                                  TuntiId = h.TuntiId,
