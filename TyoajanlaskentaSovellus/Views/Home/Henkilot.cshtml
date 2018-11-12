@@ -11,35 +11,36 @@
         function päivitäHenkilolistaus() {
             $.getJSON("/henkilot/getlist", null, function (json) {
                 var henkilot = JSON.parse(json);
-                //alert("Henkilöiden lkm: " + henkilot.length);
+                //alert(json);
 
                 var html = "";
                 for (var index = 0; index < henkilot.length; index++) {
                     html += "<tr>" +
-                        "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>" +
+                        "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + henkilot[index].HenkiloId + "'></span></a></td>" +
                         "<td>" + henkilot[index].HenkiloId + "</td>" +
                         "<td>" + henkilot[index].Etunimi + "</td>" +
                         "<td>" + henkilot[index].Sukunimi + "</td>" +
-                        "<td><a href='#'><span class='glyphicon glyphicon-trash'></span></a></td>" +
+                        "<td><a href='#'><span class='glyphicon glyphicon-trash' data-id='" + henkilot[index].HenkiloId + "'></span></a></td>" +
                         "</tr>\r\n";
                 }
 
                 $("#henkilotList tbody").html(html);
 
                 // tietojen muokkaus
-                "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + henkilot[i].HenkiloId + "'></span></a></td>" +
 
-               // $(".glyphicon-pencil").click(function () {
+
+                $(".glyphicon-pencil").click(function () {
                     // etsitään henkilön tiedot klikatulta riviltä
-                   // var HenkiloId = $(this).parent().parent().next().text();
+                    var HenkiloId = $(this).data("id");
+                    // var HenkiloId = $(this).parent().parent().next().text();
                     //alert(HenkiloId);
 
                     // haetaan asiakkaan tiedot id:n perusteella
-                    $.getJSON("/henkilot/getsinglehenkilo/" + HenkiloId, null, function (json2) {
+                    $.getJSON("/henkilot/getsinglehenkilot/" + HenkiloId, null, function (json2) {
                         var henkilot = JSON.parse(json2);
-
+                        console.log(henkilot);
                         // kopioidaan tiedot ikkunaan
-                        $("#henkilotModal_HenkId").val(henkilot.HenkiloId);
+                        $("#henkilotModal_HenkiloId").val(henkilot.HenkiloId);
                         $("#henkilotModal_Etunimi").val(henkilot.Etunimi);
                         $("#henkilotModal_Sukunimi").val(henkilot.Sukunimi);
 
@@ -52,10 +53,10 @@
                 // tietojen poisto
                 $(".glyphicon-trash").click(function () {
                     // etsitään henkilön tiedot klikatulta riviltä
-                    console.log("Poistoa klikattu");
+     
                     //var HenkiloId = $(this).parent().parent().prev().prev().prev().prev().prev().text();
-
-                    "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + henkilot[i].HenkiloId + "'></span></a></td>" +
+                    var HenkiloId = $(this).data("id");
+                    console.log("Poistoa klikattu", HenkiloId);
 
                     var ok = confirm("Haluatko varmasti poistaa henkilön " + HenkiloId + "?");
 
@@ -81,7 +82,7 @@
             $("#addNewHenkiloButton").click(function () {
 
                 // tyhjennetään ikkunan tiedot
-                $("#henkilotModal_HenkiloId").val("(uusi)");
+                $("#henkilotModal_HenkiloId").val("");
                 $("#henkilotModal_Etunimi").val("");
                 $("#henkilotModal_Sukunimi").val("");
 
@@ -92,7 +93,7 @@
             $("#henkilotModalSaveButton").click(function () {
                 // luetaan käyttäjän syöttämät kentät
                 var details = {
-                    HenkiloId: $("#henkilotModal_HenkId").val(),
+                    HenkiloId: $("#henkilotModal_HenkiloId").val(),
                     Etunimi: $("#henkilotModal_Etunimi").val(),
                     Sukunimi: $("#henkilotModal_Sukunimi").val(),
                 };
@@ -125,6 +126,7 @@
             <th>Henkilo-id</th>
             <th>Etunimi</th>
             <th>Sukunimi</th>
+            <th></th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -160,12 +162,3 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
-
-
-
-
-
-
-

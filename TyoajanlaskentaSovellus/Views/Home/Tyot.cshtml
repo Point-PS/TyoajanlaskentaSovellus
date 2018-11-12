@@ -9,9 +9,6 @@
             $.getJSON("/Tyot/HaeKaikkiTyot", null, function (json) {
                 var tyot = JSON.parse(json);
 
-                console.log(json); // selaimen f12-työkalut, valitse console ja katso mitä tapahtuu
-                console.log(tyot);
-
                 var tyotTaulukko = "";
 
                 for (var i = 0; i < tyot.length; i++) {
@@ -29,7 +26,7 @@
                 $("#tyoModallisaaUusiButton").click(function () {
 
                     //tyhjennetään ikkunan tiedot
-                    $("#tyoModal_TyoID").val(("uusi"));
+                    $("#tyoModal_TyoID").val((0));
                     $("#tyoModal_Tyotunniste").val("");
                     $("#tyoModal_Kuvaus").val("");
 
@@ -43,7 +40,7 @@
                     var details = {
                         TyoId: $("#tyoModal_TyoID").val(),
                         Tyotunniste: $("#tyoModal_Tyotunniste").val(),
-                        Kuvaus: $("#tyoModal_Kuvaus").val(),
+                        Kuvaus: $("#tyoModal_Kuvaus").val()
 
                     };
 
@@ -51,14 +48,14 @@
                         if (status == true) {
                             alert("Tiedot tallennettu!");
                             $("#tyoModalDialog").modal("hide");
-                            päivitäTyölistaus();
+                            päivitäTyölista();
                         }
                         else {
                             alert("Tallennus ei onnistunut, tarkista uudelleen!");
                         }
-
+          
                     });
-
+                    päivitäTyölista();
                 });
 
                 //Tietojen poisto
@@ -96,7 +93,7 @@
                         $("#tyoModal_TyoID").val(tyot.TyoId);
                         $("#tyoModal_Tyotunniste").val(tyot.Tyotunniste);
                         $("#tyoModal_Kuvaus").val(tyot.Kuvaus);
-                        
+
 
                         // näytetään ikkuna
                         $("#tyoModalTitle").text("Muokkaa työtä");
@@ -107,9 +104,9 @@
 
             });
         }
-        
-            
-        
+
+
+
         $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
             päivitäTyölista();
         });
