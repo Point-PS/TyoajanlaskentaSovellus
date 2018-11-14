@@ -21,6 +21,7 @@ namespace TyoajanlaskentaSovellus.Controllers
                              HenkiloId = h.HenkiloId,
                              TyoId = h.TyoId,
                              Tuntimaara = h.Tuntimaara,
+                             Paivamaara = h.Paivamaara
                          }).ToList();
 
             string json = JsonConvert.SerializeObject(malli);
@@ -44,6 +45,7 @@ namespace TyoajanlaskentaSovellus.Controllers
                     HenkiloId = tunnit.HenkiloId,
                     TyoId = tunnit.TyoId,
                     Tuntimaara = tunnit.Tuntimaara,
+                    Paivamaara = tunnit.Paivamaara,
                 };
 
                 // tallennus tietokantaan
@@ -111,6 +113,7 @@ namespace TyoajanlaskentaSovellus.Controllers
                                  HenkiloId = h.HenkiloId,
                                  TyoId = h.TyoId,
                                  Tuntimaara = h.Tuntimaara,
+                                 Paivamaara = h.Paivamaara,
 
                              }).FirstOrDefault();
 
