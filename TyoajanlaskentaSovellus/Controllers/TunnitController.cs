@@ -61,7 +61,10 @@ namespace TyoajanlaskentaSovellus.Controllers
                                  select h).FirstOrDefault();
                 if (dbItem != null)
                 {
+                    dbItem.HenkiloId = tunnit.HenkiloId;
+                    dbItem.TyoId = tunnit.TyoId;
                     dbItem.Tuntimaara = tunnit.Tuntimaara;
+                    dbItem.Paivamaara = tunnit.Paivamaara;
 
                     // tallennus tietokantaan
                     entities.SaveChanges();
