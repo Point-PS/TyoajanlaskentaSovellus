@@ -16,11 +16,11 @@
 
                 for (var i = 0; i < tyot.length; i++) {
                     tyotTaulukko += "<tr>" +
-                        "<td><a href='#'><span class='glyphicon glyphicon-pencil' ></span ></a ></td > " +
+                        "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + tyot[i].TyoId + "'></span></a></td>" +
                         "<td>" + tyot[i].TyoId + "</td>" +
                         "<td>" + tyot[i].Tyotunniste + "</td>" +
                         "<td>" + tyot[i].Kuvaus + "</td>" +
-                        "<td><a href='#'><span class='glyphicon glyphicon-trash' ></span ></a ></td > " +
+                        "<td><a href='#'><span class='glyphicon glyphicon-trash' data-id='" + tyot[i].TyoId + "'></span ></a ></td>" +
                         "</tr>\r\n";
                 }
 
@@ -33,11 +33,12 @@
 
                     //etsitään asiakkaan tiedot klikatulta riviltä
                     console.log("Poistoa klikattu");
-                    var tyoID = $(this).parent().parent().prev().prev().prev().text();
-                    var ok = confirm("haluatko varmasti poistaa työtiedot " + tyoID + "?");
+                    var tyoId = $(this).data("id");
+                    //alert(tyoId);
+                    var ok = confirm("haluatko varmasti poistaa työtiedot " + tyoId + "?");
 
                     if (ok == true) {
-                        $.getJSON("/Tyot/Delete/" + tyoID, null, function (status) {
+                        $.getJSON("/tyot/delete/" + tyoId, null, function (status) {
                             if (status == true) {
                                 alert("Työtiedot on poistettu!");
                                 päivitäTyölista();
@@ -53,7 +54,7 @@
                 $(".glyphicon-pencil").click(function () {
 
                     //etsitään asiakkaan tiedot klikatulta riviltä
-                    var tyoId = $(this).parent().parent().next().text();
+                    var tyoId = $(this).data("id");
                     //alert(tyoId);
                     //haetaan asiakkaan tiedot id:n perusteella
                     $.getJSON("/tyot/getsingletyo/" + tyoId, null, function (json2) {
