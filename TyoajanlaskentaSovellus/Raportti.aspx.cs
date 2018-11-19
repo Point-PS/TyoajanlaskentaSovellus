@@ -24,16 +24,16 @@ namespace TyoajanlaskentaSovellus
         private void ShowReport()
         {
             // reset
-            rptViewer.Reset();
+            ReportViewer1.Reset();
 
             // datasource
             DataTable dt = GetData(DateTime.Parse(txtFrom.Text), DateTime.Parse(txtTo.Text));
             ReportDataSource rds = new ReportDataSource("DataSet1", dt);
 
-            rptViewer.LocalReport.DataSources.Add(rds);
+            ReportViewer1.LocalReport.DataSources.Add(rds);
 
             // path
-            rptViewer.LocalReport.ReportPath = "Raportti1.rdlc";
+            ReportViewer1.LocalReport.ReportPath = "Raportti.rdlc";
 
             // parameters
             ReportParameter[] rptParams = new ReportParameter[]
@@ -41,14 +41,14 @@ namespace TyoajanlaskentaSovellus
                 new ReportParameter("fromDate",txtFrom.Text),
             new ReportParameter("toDate",txtTo.Text)
             };
-            rptViewer.LocalReport.SetParameters(rptParams);
+            ReportViewer1.LocalReport.SetParameters(rptParams);
             // refresh
-            rptViewer.LocalReport.Refresh();
+            ReportViewer1.LocalReport.Refresh();
         }
         private DataTable GetData(DateTime fromDate, DateTime toDate)
         {
             DataTable dt = new DataTable();
-            string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["AsiakastietokantaConnectionString"].ConnectionString;
+            string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["scrumDatabaseConnectionString"].ConnectionString;
             using (SqlConnection cn = new SqlConnection(connStr))
             {
                 SqlCommand cmd = new SqlCommand("uspAlkuPvmJaLoppuPvmParametreina", cn);
