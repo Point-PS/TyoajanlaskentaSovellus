@@ -19,6 +19,7 @@
                         "<td>" + tunnit[i].HenkiloId + "</td>" +
                         "<td>" + tunnit[i].TyoId + "</td>" +
                         "<td>" + tunnit[i].Tuntimaara + "</td>" +
+                        "<td>" + tunnit[i].Paivamaara + "</td>" +
                         "<td><a href='#'><span class='glyphicon glyphicon-trash' data-id='" + tunnit[i].TuntiId + "'></span></a></td>" +
                         "</tr>\r\n";
                 }
@@ -65,6 +66,7 @@
                         $("#tuntiModal_HenkiloID").val(tunnit.HenkiloId);
                         $("#tuntiModal_TyoID").val(tunnit.TyoId);
                         $("#tuntiModal_Tuntimaara").val(tunnit.Tuntimaara);
+                        $("#tuntiModal_Paivamaara").val(tunnit.Paivamaara);
 
                         // näytetään ikkuna
                         $("#tuntiModalTitle").text("Muokkaa tuntia");
@@ -83,6 +85,7 @@
                 $("#tuntiModal_HenkiloID").val("");
                 $("#tuntiModal_TyoID").val("");
                 $("#tuntiModal_Tuntimaara").val("");
+                $("#tuntiModal_Paivamaara").val("");
 
 
                 $("#tuntiModalTitle").text("Lisää uusi tunti");
@@ -96,6 +99,7 @@
                     HenkiloId: $("#tuntiModal_HenkiloID").val(),
                     TyoId: $("#tuntiModal_TyoID").val(),
                     Tuntimaara: $("#tuntiModal_Tuntimaara").val(),
+                    Paivamaara: $("#tuntiModal_Paivamaara").val(),
 
                 };
                 console.log(details)
@@ -127,7 +131,8 @@
             <th>TuntiId</th>
             <th>HenkiloId</th>
             <th>TyöId</th>
-            <th>Tuntimaara</th>
+            <th>Tuntimäärä</th>
+            <th>Päivämaara</th>
             <th></th>
         </tr>
     </thead>
@@ -157,6 +162,10 @@
                 <div class="row">
                     <div class="col-md-3">Tuntimaara</div>
                     <div class="col-md-6"><input class="form-control" id="tuntiModal_Tuntimaara" type="text"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Paivamaara</div>
+                    <div class="col-md-6"><input class="form-control" id="tuntiModal_Paivamaara" type="text"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" id="tuntiModalSaveButton">Tallenna</button>

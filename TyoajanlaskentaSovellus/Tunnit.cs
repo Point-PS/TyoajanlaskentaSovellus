@@ -18,6 +18,7 @@ namespace TyoajanlaskentaSovellus
         public int HenkiloId { get; set; }
         public int TyoId { get; set; }
         public Nullable<System.TimeSpan> Tuntimaara { get; set; }
+        public Nullable<System.DateTime> Paivamaara { get; set; }
     
         public virtual Henkilot Henkilot { get; set; }
         public virtual Tyot Tyot { get; set; }
