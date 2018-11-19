@@ -35,3 +35,15 @@ textarea {
     .navbar-inverse .navbar-nav > li > a {
         color: #ffffff;
     }
+
+    .navbar-inverse .navbar-brand {
+        color: #ffffff !important;
+    }
+
+.border {
+    border-color: #2B496D;
+}
+borderSize{
+    margin-right: 10px;
+    color: red;
+}
