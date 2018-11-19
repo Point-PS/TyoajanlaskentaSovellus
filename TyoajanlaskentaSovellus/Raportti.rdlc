@@ -9,13 +9,13 @@
               <Width>2.42425cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.03292cm</Width>
+              <Width>3.29209cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.83725cm</Width>
+              <Width>3.84242cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>7.54658cm</Width>
+              <Width>5.76858cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -292,7 +292,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.94686cm</Top>
         <Height>1.2cm</Height>
-        <Width>18.841cm</Width>
+        <Width>15.32733cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -314,13 +314,13 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox15</rd:DefaultName>
         <Height>0.94686cm</Height>
-        <Width>21cm</Width>
+        <Width>15.32733cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
