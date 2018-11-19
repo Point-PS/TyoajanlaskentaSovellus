@@ -11,7 +11,7 @@
         function päivitäHenkilolistaus() {
             $.getJSON("/henkilot/getlist", null, function (json) {
                 var henkilot = JSON.parse(json);
-                //alert(json);
+                //alertti(json);
 
                 var html = "";
                 for (var index = 0; index < henkilot.length; index++) {
