@@ -24,26 +24,30 @@
             <asp:ScriptManager runat="server"></asp:ScriptManager>
             Hae raportti ajalle:
             <asp:TextBox ID="txtFrom" runat="server">YYYY-MM-DD</asp:TextBox> / <asp:TextBox ID="txtTo" runat="server">YYYY-MM-DD</asp:TextBox>
-            <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="SHOW" />
-            <br />
-            
-            &nbsp;&nbsp;
+            <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="HAE" />
             <br />
             <br />
-            <rsweb:ReportViewer ID="ReportViewer1" runat="server" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor="" PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor="" SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor="" ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor="" ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="100%" style="margin-right: 28px">
+            <!--
+            Hae henkilon Id:llä: 
+            <asp:TextBox ID="txtHenkiloId" runat="server">Henkilö ID</asp:TextBox> 
+            <asp:Button ID="btnHaeHenkiloId" runat="server" OnClick="btnHaeHenkiloId_Click" Text="HAE" />
+            <br />
+            <br />
+            -->
+            <rsweb:ReportViewer ID="ReportViewer1" runat="server" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor="" PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor="" SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor="" ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor="" ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="100%" style="margin-right: 28px" SizeToReportContent="True">
                 <LocalReport ReportPath="Raportti.rdlc">
-                    <DataSources>
-                        <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DataSet1" />
-                    </DataSources>
+                           <datasources>
+                               <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DataSet1" />
+                           </datasources>
                 </LocalReport>
             </rsweb:ReportViewer>
-        </div>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="TyoajanlaskentaSovellus.scrumDatabaseDataSet1TableAdapters.uspAlkuPvmJaLoppuPvmParametreinaTableAdapter">
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="TyoajanlaskentaSovellus.scrumDatabaseDataSet1TableAdapters.uspAlkuPvmJaLoppuPvmParametreinaTableAdapter">
             <SelectParameters>
                 <asp:Parameter Name="alkuPvm" Type="DateTime" />
                 <asp:Parameter Name="loppuPvm" Type="DateTime" />
             </SelectParameters>
         </asp:ObjectDataSource>
+            </div>
     </form>
 </body>
 </html>
