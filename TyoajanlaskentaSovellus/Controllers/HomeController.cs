@@ -12,7 +12,11 @@ namespace TyoajanlaskentaSovellus.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            scrumDatabaseEntities entities = new scrumDatabaseEntities();
+            List<Henkilot> model = entities.Henkilot.ToList();
+           
+            entities.Dispose();
+            return View(model);
         }
 
         public ActionResult About()

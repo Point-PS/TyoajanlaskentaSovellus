@@ -1108,6 +1108,7 @@ pre code {
   }
   .col-md-4 {
     width: 33.33333333333333%;
+
   }
   .col-md-5 {
     width: 41.66666666666667%;
@@ -4507,9 +4508,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
     border-color: #080808;
 }
 
-.navbar-inverse .navbar-brand {
-  color: #999999;
-}
+    .navbar-inverse .navbar-brand {
+        color: #ffffff;
+    }
 
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {

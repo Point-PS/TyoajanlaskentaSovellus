@@ -76,8 +76,36 @@
                 });
             });
         }
+
+        function haeHenkilot() {
+            $.getJSON("/henkilot/getlist", null, function (json) {
+                var henkilot = JSON.parse(json);
+                //console.log(henkilot);
+                var apu = "<option value=''>-- Valitse henkilö --</option>";
+                for (var i = 0; i < henkilot.length; i++) {
+                    apu += "<option value='" + henkilot[i].HenkiloId + "'>" + henkilot[i].HenkiloId + " " + henkilot[i].Etunimi + " " + henkilot[i].Sukunimi + "</option>"
+                }
+                $("#tuntiModal_HenkiloID").html(apu);
+            })
+        };
+
+        function haeTyot() {
+            $.getJSON("/Tyot/HaeKaikkiTyot", null, function (json) {
+                var tyot = JSON.parse(json);
+                console.log(tyot);
+                var apu = "<option value=''>-- Valitse työ --</option>";
+                for (var i = 0; i < tyot.length; i++) {
+                    apu += "<option value='" + tyot[i].TyoId + "'>" + tyot[i].TyoId + " " + tyot[i].Tyotunniste + "</option>"
+                }
+                $("#tuntiModal_TyoID").html(apu);
+            })
+        };
+
+
         $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
             päivitäTuntilista();
+            haeHenkilot();
+            haeTyot();
             $("#tunnitModalLisaaUusiButton").click(function () {
 
                 //tyhjennetään ikkunan tiedot
@@ -153,11 +181,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">HenkiloID</div>
-                    <div class="col-md-6"><input class="form-control" id="tuntiModal_HenkiloID" type="text"></div>
+                    <div class="col-md-6"><select class="form-control" id="tuntiModal_HenkiloID" required></select></div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">TyoID</div>
-                    <div class="col-md-6"><input class="form-control" id="tuntiModal_TyoID" type="text"></div>
+                    <div class="col-md-6"><select class="form-control" id="tuntiModal_TyoID" required></select></div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Tuntimaara</div>
