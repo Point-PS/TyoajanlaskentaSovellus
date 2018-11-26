@@ -36,20 +36,22 @@
 
                     <tbody>
 
+
+
+
+                        @foreach (var d in Model.Henkilot)
+                        {
                         <tr>
-
-
-                            @foreach (var d in Model.Henkilot)
-                            {
-                                <td>@d.HenkiloId</td>
-                                <td>@d.Etunimi</td>
-                                <td>@d.Sukunimi</td>
-                            }
-
+                            <td>@d.HenkiloId</td>
+                            <td>@d.Etunimi</td>
+                            <td>@d.Sukunimi</td>
                         </tr>
+                                }
 
 
-                    </tbody>
+
+
+                        </tbody>
 
                 </table>
             </div>
@@ -73,18 +75,20 @@
                 </thead>
                 <tbody>
 
-                    <tr>
 
-                        @foreach (var d in Model.Tyot)
-                        {
+
+                    @foreach (var d in Model.Tyot)
+                    {
+                        <tr>
+                          
                             <td>@d.TyoId</td>
                             <td>@d.Tyotunniste)</td>
                             <td>@d.Kuvaus</td>
 
-                        }
+                          
 
-                    </tr>
-
+                        </tr>
+                    }
 
                 </tbody>
 
