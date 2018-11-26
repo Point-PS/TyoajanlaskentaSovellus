@@ -1,217 +1,131 @@
-﻿@model IEnumerable<TyoajanlaskentaSovellus.Henkilot>
-
-    @{
-        ViewBag.Title = "Home Page1";
-    }
+﻿@model TyoajanlaskentaSovellus.Models.IndexModelView
 
 
-    <div class="borderSize">
-
-        <style>
-            .borderSize {
-                color: #30639F;
-                margin-top: 100px;
-   
-            }
-        </style>
-
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Henkilöiden tiedot<a style="margin-left: 55px" class="btn btn-default" href="/Home/Henkilot"><span class='glyphicon glyphicon-edit'></span></a></h2>
-
-                <div class="border">
-                    <table class="table table-bordered" id="henkilötListana">
-                        <thead>
-                            <tr>
+@{
+    ViewBag.Title = "Home Page1";
+}
 
 
+<div class="borderSize">
 
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Etunimi)
-                                </th>
+    <style>
+        .borderSize {
+            color: #30639F;
+            margin-top: 100px;
+        }
+    </style>
 
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Sukunimi)
-                                </th>
+    <div class="row">
+        <div class="col-md-4">
 
-                            </tr>
-                        </thead>
-                        <tbody>
+            @* HENKILÖT *@
 
-                            @foreach (var item in Model)
+            <h2>Henkilöiden tiedot<a style="margin-left: 55px" class="btn btn-default" href="/Home/Henkilot"><span class='glyphicon glyphicon-edit'></span></a></h2>
+
+            <div class="border">
+                <table class="table table-bordered" id="henkilötListana">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Etunimi</th>
+                            <th>Sukunimi</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+
+                            @foreach (var d in Model.Henkilot)
                             {
-                                <tr>
-
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Etunimi)
-                                    </td>
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Sukunimi)
-                                    </td>
-
-
-                                </tr>
+                                <td>@d.HenkiloId</td>
+                                <td>@d.Etunimi</td>
+                                <td>@d.Sukunimi</td>
                             }
 
-                        </tbody> <!-- Henkilöt listataan tähän -->
-                    </table>
-                </div>
+                        </tr>
 
-                <hr>
 
-                <h2>Tunnit<a style="margin-left: 210px" class="btn btn-default" href="/Home/Tunnit"><span class='glyphicon glyphicon-edit'></span></a></h2>
-
-                <table class="table table-bordered" id="henkilötListana">
-                    <thead>
-                        <tr>
-                            <th>TunnitId</th>
-                            <th>HenkiloId</th>
-                            <th>TyöId</th>
-                            <th>Tuntimäärä</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
                     </tbody>
 
                 </table>
-
-
             </div>
 
 
 
-            <div class="col-md-4">
+            <hr>
 
-                <h2>Työt<a style="margin-left: 240px" class="btn btn-default" href="/Home/Tyot"><span class='glyphicon glyphicon-edit'></span></a></h2>
+            @* TUNNIT *@
 
-                <table class="table table-bordered" id="henkilötListana">
-                    <thead>
-                        <tr>
-                            <th>TunnitId</th>
-                            <th>HenkiloId</th>
-                            <th>TyöId</th>
-                            <th>Tuntimäärä</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                    </tbody>
+            <h2>Tunnit<a style="margin-left: 210px" class="btn btn-default" href="/Home/Tunnit"><span class='glyphicon glyphicon-edit'></span></a></h2>
 
-                </table>
+            <table class="table table-bordered" id="henkilötListana">
+                <thead>
+                    <tr>
+                        <th>TyöId</th>
+                        <th>Työtunniste</th>
+                        <th>Kuvaus</th>
 
-                <hr>
+                    </tr>
+                </thead>
+                <tbody>
 
-                <h2>Työtaikaraportti<a style="margin-left: 85px" class="btn btn-default" href="/Home/Raportti"><span class='glyphicon glyphicon-edit'></span></a></h2>
-                <table class="table table-bordered" id="henkilötListana">
-                    <thead>
-                        <tr>
-                            <th>TunnitId</th>
-                            <th>HenkiloId</th>
-                            <th>TyöId</th>
-                            <th>Tuntimäärä</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
+                    <tr>
 
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
-                        <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                        </tr>
+                        @foreach (var d in Model.Tyot)
+                        {
+                            <td>@d.TyoId</td>
+                            <td>@d.Tyotunniste)</td>
+                            <td>@d.Kuvaus</td>
 
-                    </tbody>
+                        }
 
-                </table>
+                    </tr>
 
 
+                </tbody>
 
-            </div>
+            </table>
+
 
         </div>
+
+
+
+        <div class="col-md-4">
+
+            <h2>Työt<a style="margin-left: 240px" class="btn btn-default" href="/Home/Tyot"><span class='glyphicon glyphicon-edit'></span></a></h2>
+
+            <table class="table table-bordered" id="henkilötListana">
+                <thead>
+                   
+                </thead>
+                <tbody>
+                   
+                </tbody>
+
+            </table>
+
+            <hr>
+
+            <h2>Työtaikaraportti<a style="margin-left: 85px" class="btn btn-default" href="/Home/Raportti"><span class='glyphicon glyphicon-edit'></span></a></h2>
+            <table class="table table-bordered" id="henkilötListana">
+                <thead>
+                   
+                </thead>
+                <tbody>
+                   
+
+                </tbody>
+
+            </table>
+
+
+
+        </div>
+
     </div>
+</div>

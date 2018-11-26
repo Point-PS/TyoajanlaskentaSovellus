@@ -10,13 +10,40 @@ namespace TyoajanlaskentaSovellus.Controllers
 {
     public class HomeController : Controller
     {
+        
+
         public ActionResult Index()
         {
-            scrumDatabaseEntities entities = new scrumDatabaseEntities();
-            List<Henkilot> model = entities.Henkilot.ToList();
-           
-            entities.Dispose();
-            return View(model);
+            using (var entities = new scrumDatabaseEntities())
+            {
+                var model = new IndexModelView
+                {
+                    Henkilot = entities.Henkilot.ToList(),
+                    Tyot = entities.Tyot.ToList(),
+                    Tunnit = entities.Tunnit.ToList()
+                };
+
+                return View(model);
+            }
+
+        //  scrumDatabaseEntities entities = new scrumDatabaseEntities();
+        //    entities .Henkilot = scrumDatabaseEntities.He
+        ////Vanhat Asiat
+
+        ////scrumDatabaseEntities entities = new scrumDatabaseEntities();
+        ////dynamic model = new ExpandoObject();
+        ////model.Henkilot = entities.Henkilot.ToList();
+        ////model.Tyot = entities.Tyot.ToList();
+        ////model.Tunnit = entities.Tunnit.ToList();
+
+        //ViewBag.Henkilot = entities.Henkilot.FirstOrDefault(x => x.HenkiloId == someId);
+
+
+
+            //List<Henkilot> model = entities.Henkilot.ToList();
+
+            //entities.Dispose();
+            //return View();
         }
 
         public ActionResult About()
