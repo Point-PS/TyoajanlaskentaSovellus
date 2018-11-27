@@ -138,47 +138,79 @@
 @section scripts {
 <script type="text/javascript">
 
-   
+    function päivitäTuntilista() {
 
-        $("#tunnitModalLisaaUusiButton").click(function () {
+        $.getJSON("/Tunnit/HaeKaikkiTunnit", null, function (json) {
+            var tunnit = JSON.parse(json);
+            //console.log(tunnit)
 
-        //tyhjennetään ikkunan tiedot
-        $("#tuntiModal_TuntiID").val(("0"));
-        $("#tuntiModal_HenkiloID").val("");
-        $("#tuntiModal_TyoID").val("");
-        $("#tuntiModal_Tuntimaara").val("");
-        $("#tuntiModal_Paivamaara").val("");
+            var tunnitTaulukko = "";
 
-
-        $("#tuntiModalTitle").text("Lisää uusi tunti");
-        $("#tuntiModalDialog").modal("show");
-    });
-
-    $("#tuntiModalSaveButton").click(function () {
-
-        var details = {
-            TuntiId: $("#tuntiModal_TuntiID").val(),
-            HenkiloId: $("#tuntiModal_HenkiloID").val(),
-            TyoId: $("#tuntiModal_TyoID").val(),
-            Tuntimaara: $("#tuntiModal_Tuntimaara").val(),
-            Paivamaara: $("#tuntiModal_Paivamaara").val(),
-
-        };
-        console.log(details)
-        $.post("/Tunnit/Update/", details, function (status) {
-            if (status == true) {
-                alert("Tiedot tallennettu!");
-                $("#tuntiModalDialog").modal("hide");
-                päivitäTuntilista();
-            }
-            else {
-                alert("Tallennus ei onnistunut, tarkista uudelleen!");
+            for (var i = 0; i < tunnit.length; i++) {
+                tunnitTaulukko += "<tr>" +
+                    "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + tunnit[i].TuntiId + "'></span></a></td>" +
+                    "<td>" + tunnit[i].TuntiId + "</td>" +
+                    "<td>" + tunnit[i].HenkiloId + "</td>" +
+                    "<td>" + tunnit[i].TyoId + "</td>" +
+                    "<td>" + tunnit[i].Tuntimaara + "</td>" +
+                    "<td>" + tunnit[i].Paivamaara + "</td>" +
+                    "<td><a href='#'><span class='glyphicon glyphicon-trash' data-id='" + tunnit[i].TuntiId + "'></span></a></td>" +
+                    "</tr>\r\n";
             }
 
+            $("#tunnitListana tbody").html(tunnitTaulukko);
+
+
+
+            //Tietojen poisto
+            $(".glyphicon-trash").click(function () {
+
+                //etsitään asiakkaan tiedot klikatulta riviltä
+                var tuntiID = $(this).data("id");
+                //var tuntiID = $(this).parent().parent().prev().prev().prev().text();
+                console.log("Poistoa klikattu, id:", tuntiID);
+                var ok = confirm("haluatko varmasti poistaa tuntitiedot " + tuntiID + "?");
+
+                if (ok == true) {
+                    $.getJSON("/Tunnit/Delete/" + tuntiID, null, function (status) {
+                        if (status == true) {
+                            alert("Tuntitiedot on poistettu!");
+                            päivitäTuntilista();
+                        }
+                        else {
+                            alert("poistaminen ei onnistunut, tarkista tiedot!");
+
+                        }
+                    });
+                }
+            });
+
+            $(".glyphicon-pencil").click(function () {
+
+                //etsitään tunnin tiedot klikatulta riviltä
+                var tuntiId = $(this).data("id");
+                //var tuntiId = $(this).parent().parent().next().text();
+                //alert(tuntiId);
+                //haetaan tunnin tiedot id:n perusteella
+                $.getJSON("/tunnit/getsingletunti/" + tuntiId, null, function (json2) {
+                    var tunnit = JSON.parse(json2);
+
+                    // kopioidaan tiedot ikkunaan
+                    $("#tuntiModal_TuntiID").val(tunnit.TuntiId);
+                    $("#tuntiModal_HenkiloID").val(tunnit.HenkiloId);
+                    $("#tuntiModal_TyoID").val(tunnit.TyoId);
+                    $("#tuntiModal_Tuntimaara").val(tunnit.Tuntimaara);
+                    $("#tuntiModal_Paivamaara").val(tunnit.Paivamaara);
+
+                    // näytetään ikkuna
+                    $("#tuntiModalTitle").text("Muokkaa tuntia");
+                    $("#tuntiModalDialog").modal("show");
+
+                });
+            });
         });
+    }
 
-    });
-    
     function haeHenkilot() {
         $.getJSON("/henkilot/getlist", null, function (json) {
             var henkilot = JSON.parse(json);
@@ -203,11 +235,49 @@
         })
     };
 
-   
-    //$(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
-       // päivitäTuntilista();
+    $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
+        päivitäTuntilista();
         haeHenkilot();
         haeTyot();
+        $("#tunnitModalLisaaUusiButton").click(function () {
+
+            //tyhjennetään ikkunan tiedot
+            $("#tuntiModal_TuntiID").val(("0"));
+            $("#tuntiModal_HenkiloID").val("");
+            $("#tuntiModal_TyoID").val("");
+            $("#tuntiModal_Tuntimaara").val("");
+            $("#tuntiModal_Paivamaara").val("");
+
+
+            $("#tuntiModalTitle").text("Lisää uusi tunti");
+            $("#tuntiModalDialog").modal("show");
+        });
+
+        $("#tuntiModalSaveButton").click(function () {
+
+            var details = {
+                TuntiId: $("#tuntiModal_TuntiID").val(),
+                HenkiloId: $("#tuntiModal_HenkiloID").val(),
+                TyoId: $("#tuntiModal_TyoID").val(),
+                Tuntimaara: $("#tuntiModal_Tuntimaara").val(),
+                Paivamaara: $("#tuntiModal_Paivamaara").val(),
+
+            };
+            console.log(details)
+            $.post("/Tunnit/Update/", details, function (status) {
+                if (status == true) {
+                    alert("Tiedot tallennettu!");
+                    $("#tuntiModalDialog").modal("hide");
+                    päivitäTuntilista();
+                }
+                else {
+                    alert("Tallennus ei onnistunut, tarkista uudelleen!");
+                }
+
+            });
+
+        });
+    });
 
 </script>
 
