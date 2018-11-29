@@ -18,9 +18,9 @@ namespace TyoajanlaskentaSovellus.Controllers
             {
                 var model = new IndexModelView
                 {
-                    Henkilot = entities.Henkilot.ToList(),
-                    Tyot = entities.Tyot.ToList(),
-                    Tunnit = entities.Tunnit.ToList()
+                    Henkilot = entities.Henkilot.Take(5).ToList(),
+                    Tyot = entities.Tyot.Take(5).ToList(),
+                    Tunnit = entities.Tunnit.Take(10).ToList()
                 };
 
                 return View(model);

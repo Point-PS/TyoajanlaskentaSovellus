@@ -24,7 +24,7 @@
             <h2>
                 <button class="btn btn-info" id="tunnitModalLisaaUusiButton">Syötä tunnit</button>
             </h2>
-            
+
 
 
 
@@ -70,9 +70,9 @@
 
             <hr>
 
-            @* TUNNIT *@
+            @* Työt *@
 
-            <h2>Tunnit<a style="margin-left: 210px" class="btn btn-default" href="/Home/Tunnit"><span class='glyphicon glyphicon-edit'></span></a></h2>
+            <h2>Työt<a style="margin-left: 210px" class="btn btn-default" href="/Home/Tyot"><span class='glyphicon glyphicon-edit'></span></a></h2>
 
             <table class="table table-bordered" id="henkilötListana">
                 <thead>
@@ -107,23 +107,40 @@
 
         </div>
 
-
+        @* Tunnit *@
 
         <div class="col-md-4">
 
-            <h2>Työt<a style="margin-left: 240px" class="btn btn-default" href="/Home/Tyot"><span class='glyphicon glyphicon-edit'></span></a></h2>
+            <h2>Tunnit<a style="margin-left: 240px" class="btn btn-default" href="/Home/Tunnit"><span class='glyphicon glyphicon-edit'></span></a></h2>
 
             <table class="table table-bordered" id="henkilötListana">
                 <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tuntimäärä</th>
+                        <th>Päivämäärä</th>
 
+                    </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+
+                    @foreach (var d in Model.Tunnit)
+                    {
+                        <tr>
+                            <td>@d.HenkiloId</td>
+                            <td>@d.Tuntimaara</td>
+                            <td>@d.Paivamaara</td>
+                        </tr>
+                    }
+
+
+                </tbody>
 
             </table>
 
             <hr>
 
-            <h2>Työtaikaraportti<a style="margin-left: 85px" class="btn btn-default" href="/Home/Raportti"><span class='glyphicon glyphicon-edit'></span></a></h2>
+            <h2>Työaikaraportti<a style="margin-left: 85px" class="btn btn-default" href="/Home/Raportti"><span class='glyphicon glyphicon-edit'></span></a></h2>
             <table class="table table-bordered" id="henkilötListana">
                 <thead>
 
