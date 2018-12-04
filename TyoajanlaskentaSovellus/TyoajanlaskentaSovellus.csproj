@@ -240,6 +240,14 @@
     <Compile Include="Raportti.aspx.designer.cs">
       <DependentUpon>Raportti.aspx</DependentUpon>
     </Compile>
+    <Compile Include="scrumDatabaseDataSet.Designer.cs">
+      <DependentUpon>scrumDatabaseDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="scrumDatabaseDataSet1.cs">
+      <DependentUpon>scrumDatabaseDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="scrumDatabaseDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -272,6 +280,10 @@
     <Compile Include="ViewModels\TyotViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -281,9 +293,13 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\TyoajanlaskentaSovellusWebApp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1-vsdoc.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -295,6 +311,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -405,6 +426,17 @@
     <Content Include="scrumDatabaseDataSet1.xsc">
       <DependentUpon>scrumDatabaseDataSet1.xsd</DependentUpon>
     </Content>
+    <Content Include="scrumDatabaseDataSet.xsc">
+      <DependentUpon>scrumDatabaseDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="scrumDatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>scrumDatabaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="scrumDatabaseDataSet.xss">
+      <DependentUpon>scrumDatabaseDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="scrumDatabaseDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>scrumDatabaseDataSet1.Designer.cs</LastGenOutput>
@@ -433,6 +465,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Raportti.rdlc" />
+    <EmbeddedResource Include="ReportHenkiloidenTunnit.rdlc" />
+    <EmbeddedResource Include="ReportHenkilotHeaders.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
