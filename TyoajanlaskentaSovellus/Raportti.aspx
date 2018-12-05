@@ -5,33 +5,36 @@
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
-
-<!DOCTYPE html>
-<head>
+<!DOCTYPE html>    
+<html>
+  <head>  
     <title>Raportointi</title>
-    <style>
+    <style> 
         html, body, form, #div1 {
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-            height: 36px;
-            width: 199px;
+     height: 36px; 
+     width: 199px;
+     }
+        #div2 {
+            background-color: darkgray;
         }
-    </style>
-</head>
+     </style>
+  </head>
 
 <body>
     <form id="form1" runat="server">
         <div style="width: 1074px">
             <asp:ScriptManager runat="server"></asp:ScriptManager>
             &nbsp;
-
+            <div id="div2">
+                <br />
+            &nbsp;&nbsp;
             Hae työaikaraportti ajalle:
-
             <asp:TextBox ID="txtFrom" runat="server" type="date" name="date" min="2000-01-01" max="2100-01-01" lang="fi" required>YYYY-MM-DD</asp:TextBox> / <asp:TextBox ID="txtTo" runat="server" type="date" name="date" min="2000-01-01" max="2100-01-01" lang="fi" required>YYYY-MM-DD</asp:TextBox>
-            <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="Näytä raportti" Height="25px" style="margin-left: 10px" />
-            &nbsp;<br />
+            <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="Näytä raportti" Height="35px" style="margin-left: 10px" />
+            &nbsp;
             <br />
+            <br />
+                </div>
             <rsweb:ReportViewer ID="ReportViewer1" runat="server" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor="" PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor="" SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor="" ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor="" ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="100%" style="margin-right: 28px" SizeToReportContent="True" Height="377px">
                 <LocalReport ReportPath="Raportti.rdlc">
                            <datasources>
