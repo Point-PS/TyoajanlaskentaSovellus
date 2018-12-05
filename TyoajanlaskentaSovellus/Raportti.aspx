@@ -6,7 +6,9 @@
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 
-<!DOCTYPE html>    <title>Raportointi</title>
+<!DOCTYPE html>
+<head>
+    <title>Raportointi</title>
     <style>
         html, body, form, #div1 {
 
