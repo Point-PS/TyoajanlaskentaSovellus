@@ -9,7 +9,7 @@ namespace TyoajanlaskentaSovellus.Controllers
 {
     public class HenkilotController : Controller
     {
-        
+        bool paaKayttaja = false;
         public ActionResult Index()
         {
 
@@ -24,19 +24,40 @@ namespace TyoajanlaskentaSovellus.Controllers
         {
             scrumDatabaseEntities entities = new scrumDatabaseEntities();
 
-            var model = (from h in entities.Henkilot
-                         select new
-                         {
-                             HenkiloId = h.HenkiloId,
-                             Etunimi = h.Etunimi,
-                             Sukunimi = h.Sukunimi,
-                          
-                         }).ToList();
+            if (paaKayttaja == true)
+            {
+                var model = (from h in entities.Henkilot
+                             select new
+                             {
+                                 HenkiloId = h.HenkiloId,
+                                 Etunimi = h.Etunimi,
+                                 Sukunimi = h.Sukunimi
 
-            string json = JsonConvert.SerializeObject(model);
-            entities.Dispose();
+                             }).ToList();
+                string json = JsonConvert.SerializeObject(model);
+                entities.Dispose();
 
-            return Json(json, JsonRequestBehavior.AllowGet);
+                return Json(json, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var model = (from h in entities.Henkilot
+                             where h.HenkiloId == 1
+                             select new
+                             {
+                                 HenkiloId = h.HenkiloId,
+                                 Etunimi = h.Etunimi,
+                                 Sukunimi = h.Sukunimi
+
+                             }).ToList();
+                string json = JsonConvert.SerializeObject(model);
+                entities.Dispose();
+
+                return Json(json, JsonRequestBehavior.AllowGet);
+            }
+
+
+
         }
 
         public JsonResult GetSingleHenkilot(string id)
