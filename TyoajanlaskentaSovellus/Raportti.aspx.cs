@@ -61,48 +61,5 @@ namespace TyoajanlaskentaSovellus
             }
             return dt;
         }
-
-        protected void btnHaeHenkiloId_Click(object sender, EventArgs e)
-        {
-            ShowReportHenk();
-        }
-        private void ShowReportHenk()
-        {
-            // reset
-            ReportViewer1.Reset();
-
-            // datasource
-            DataTable dtHenk = GetDataHenk(int.Parse(txtHenkiloId.Text));
-            ReportDataSource rdsHenk = new ReportDataSource("DataDet2", dtHenk);
-
-            ReportViewer1.LocalReport.DataSources.Add(rdsHenk);
-
-            // path
-            ReportViewer1.LocalReport.ReportPath = "RaporttiHenkiloId.rdlc";
-
-            // parameters
-            ReportParameter[] rptHenkParams = new ReportParameter[]
-            {
-                new ReportParameter("henkiloidpara",txtHenkiloId.Text)
-            };
-            ReportViewer1.LocalReport.SetParameters(rptHenkParams);
-            // refresh
-            ReportViewer1.LocalReport.Refresh();
-        }
-        private DataTable GetDataHenk(int henkiloId)
-        {
-            DataTable dtHenk = new DataTable();
-            string connStrHenk = System.Configuration.ConfigurationManager.ConnectionStrings["scrumDatabaseConnectionString"].ConnectionString;
-            using (SqlConnection cnHenk = new SqlConnection(connStrHenk))
-            {
-                SqlCommand cmdHenk = new SqlCommand("uspHenkiloIdParametrina", cnHenk);
-                cmdHenk.CommandType = CommandType.StoredProcedure;
-                cmdHenk.Parameters.Add("@henkiloidpara", SqlDbType.Int).Value = henkiloId;
-
-                SqlDataAdapter adpHenk = new SqlDataAdapter(cmdHenk);
-                adpHenk.Fill(dtHenk);
-            }
-            return dtHenk;
-        }
     }
 }
