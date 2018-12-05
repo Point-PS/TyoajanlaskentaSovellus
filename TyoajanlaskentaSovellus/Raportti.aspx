@@ -6,12 +6,12 @@
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Raportointi</title>
+<!DOCTYPE html>    <title>Raportointi</title>
     <style>
         html, body, form, #div1 {
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
             height: 36px;
             width: 199px;
         }
