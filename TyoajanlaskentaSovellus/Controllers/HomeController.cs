@@ -14,13 +14,14 @@ namespace TyoajanlaskentaSovellus.Controllers
 
         public ActionResult Index()
         {
+
             using (var entities = new scrumDatabaseEntities())
             {
                 var model = new IndexModelView
                 {
-                    Henkilot = entities.Henkilot.Take(5).ToList(),
-                    Tyot = entities.Tyot.Take(5).ToList(),
-                    Tunnit = entities.Tunnit.Take(10).ToList()
+                    Henkilot = entities.Henkilot.Take(1).ToList(),
+                    Tyot = entities.Tyot.Take(1).ToList(),
+                    Tunnit = entities.Tunnit.Take(1).ToList()
                 };
 
                 return View(model);
