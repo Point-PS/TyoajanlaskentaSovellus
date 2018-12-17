@@ -9,7 +9,7 @@ namespace TyoajanlaskentaSovellus.Controllers
 {
     public class HenkilotController : Controller
     {
-        bool paaKayttaja = false;
+        bool paaKayttaja = true;
         public ActionResult Index()
         {
 

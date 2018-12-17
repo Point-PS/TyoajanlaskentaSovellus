@@ -11,7 +11,7 @@
 
     <style>
         .borderSize {
-            color: #000000;
+            color: #30639F;
             margin-top: 100px;
         }
     </style>
@@ -83,7 +83,7 @@
                         <tr>
 
                             <td>@d.TyoId</td>
-                            <td>@d.Tyotunniste</td>
+                            <td>@d.Tyotunniste)</td>
                             <td>@d.Kuvaus</td>
 
 
@@ -101,12 +101,7 @@
         @* Tunnit *@
 
         <div class="col-md-4">
-            <h2>
-                <p><a class="btn btn-default" href="/Home/Tunnit"><span class='glyphicon glyphicon-edit'></span></a></p>Tuntitapahtumat
-                <button class="btn btn-sample  black-background btn:hover dropdown-toggle.btn-sample" id="tunnitModalLisaaUusiButton">Syötä tunnit </button>
-
-                @*<p><a class="btn btn-default" href="/Home/Tunnit"><span class='glyphicon glyphicon-home'></span></a></p>*@
-
+            <h2><p><a class="btn btn-default" href="/Home/Tunnit"><span class='glyphicon glyphicon-edit'></span></a></p>Tuntitapahtumat <button class="btn btn-primary" id="tunnitModalLisaaUusiButton">Syötä tunnit </button>
             </h2>
             
             <div class="borderMargin">
@@ -140,24 +135,8 @@
                         </tr>
                     }
 
-
                 </tbody>
-
             </table>
-
-            <hr>
-
-            <h2>Työaikaraportti<a style="margin-left: 85px" class="btn btn-default" href="Raportti.aspx"><span class='glyphicon glyphicon-edit'></span></a></h2>
-            <table class="table table-bordered" id="henkilötListana">
-                <thead>
-
-                </thead>
-                <tbody></tbody>
-
-            </table>
-
-
-
         </div>
 
     </div>
