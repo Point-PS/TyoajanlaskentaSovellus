@@ -17,93 +17,13 @@
     </style>
 
     <div class="row">
-        <div class="col-md-4">
-
-            @* HENKILÖT *@
-
-            <h2>Henkilöiden tiedot<a style="margin-left: 55px" class="btn btn-default" href="/Home/Henkilot"><span class='glyphicon glyphicon-edit'></span></a></h2>
-
-            <div class="border">
-                <table class="table table-bordered" id="henkilötListana">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Etunimi</th>
-                            <th>Sukunimi</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-
-
-
-                        @foreach (var d in Model.Henkilot)
-                        {
-                            <tr>
-                                <td>@d.HenkiloId</td>
-                                <td>@d.Etunimi</td>
-                                <td>@d.Sukunimi</td>
-                            </tr>
-                        }
-
-
-
-
-                    </tbody>
-
-                </table>
-            </div>
-
-
-
-            <hr>
-
-            @* Työt *@
-
-            <h2>Töiden tiedot<a style="margin-left: 210px" class="btn btn-default" href="/Home/Tyot"><span class='glyphicon glyphicon-edit'></span></a></h2>
-
-            <table class="table table-bordered" id="henkilötListana">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Työtunniste</th>
-                        <th>Kuvaus</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-
-
-                    @foreach (var d in Model.Tyot)
-                    {
-                        <tr>
-
-                            <td>@d.TyoId</td>
-                            <td>@d.Tyotunniste)</td>
-                            <td>@d.Kuvaus</td>
-
-
-
-                        </tr>
-                    }
-
-                </tbody>
-
-            </table>
-
-
-        </div>
-
         @* Tunnit *@
 
-        <div class="col-md-4">
-            <h2><p><a class="btn btn-default" href="/Home/Tunnit"><span class='glyphicon glyphicon-edit'></span></a></p>Tuntitapahtumat <button class="btn   btn-sample  black-background btn:hover dropdown-toggle.btn-sample" id="tunnitModalLisaaUusiButton">Syötä tunnit </button>
+        <div class="col-md-4 no-float">
+            <h2>
+                <a class="btn btn-default link-margin" href="/Home/Tunnit"><span class='glyphicon glyphicon-edit'></span></a>Tuntitapahtumat <button class="btn btn-sample btn-block  black-background btn:hover dropdown-toggle.btn-sample" id="tunnitModalLisaaUusiButton">Syötä tunnit </button>
             </h2>
-            
+
             <div class="borderMargin">
 
                 <style>
@@ -139,190 +59,273 @@
             </table>
         </div>
 
+        <div class="col-md-4 no-float">
+
+            @* HENKILÖT *@
+
+            <h2><a class="btn btn-default link-margin" href="/Home/Henkilot"><span class='glyphicon glyphicon-edit'></span></a>Henkilöiden tiedot</h2>
+
+            <div class="border">
+                <table class="table table-bordered" id="henkilötListana">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Etunimi</th>
+                            <th>Sukunimi</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+
+
+
+                        @foreach (var d in Model.Henkilot)
+                        {
+                            <tr>
+                                <td>@d.HenkiloId</td>
+                                <td>@d.Etunimi</td>
+                                <td>@d.Sukunimi</td>
+                            </tr>
+                        }
+
+
+
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 no-float">
+
+            @* Työt *@
+
+            <h2><a class="btn btn-default link-margin" href="/Home/Tyot"><span class='glyphicon glyphicon-edit'></span></a>Töiden tiedot</h2>
+
+            <table class="table table-bordered" id="henkilötListana">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Työtunniste</th>
+                        <th>Kuvaus</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    @foreach (var d in Model.Tyot)
+                    {
+                        <tr>
+
+                            <td>@d.TyoId</td>
+                            <td>@d.Tyotunniste)</td>
+                            <td>@d.Kuvaus</td>
+
+
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+
+
     </div>
 </div>
 
 @section scripts {
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    function päivitäTuntilista() {
+        function päivitäTuntilista() {
 
-        $.getJSON("/Tunnit/HaeKaikkiTunnit", null, function (json) {
-            var tunnit = JSON.parse(json);
-            //console.log(tunnit)
+            $.getJSON("/Tunnit/HaeKaikkiTunnit", null, function (json) {
+                var tunnit = JSON.parse(json);
+                //console.log(tunnit)
 
-            var tunnitTaulukko = "";
+                var tunnitTaulukko = "";
 
-            for (var i = 0; i < tunnit.length; i++) {
-                tunnitTaulukko += "<tr>" +
-                    "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + tunnit[i].TuntiId + "'></span></a></td>" +
-                    "<td>" + tunnit[i].TuntiId + "</td>" +
-                    "<td>" + tunnit[i].HenkiloId + "</td>" +
-                    "<td>" + tunnit[i].TyoId + "</td>" +
-                    "<td>" + tunnit[i].Tuntimaara + "</td>" +
-                    "<td>" + tunnit[i].Paivamaara + "</td>" +
-                    "<td><a href='#'><span class='glyphicon glyphicon-trash' data-id='" + tunnit[i].TuntiId + "'></span></a></td>" +
-                    "</tr>\r\n";
-            }
-
-            $("#tunnitListana tbody").html(tunnitTaulukko);
-
-
-
-            //Tietojen poisto
-            $(".glyphicon-trash").click(function () {
-
-                //etsitään asiakkaan tiedot klikatulta riviltä
-                var tuntiID = $(this).data("id");
-                //var tuntiID = $(this).parent().parent().prev().prev().prev().text();
-                console.log("Poistoa klikattu, id:", tuntiID);
-                var ok = confirm("haluatko varmasti poistaa tuntitiedot " + tuntiID + "?");
-
-                if (ok == true) {
-                    $.getJSON("/Tunnit/Delete/" + tuntiID, null, function (status) {
-                        if (status == true) {
-                            alert("Tuntitiedot on poistettu!");
-                            päivitäTuntilista();
-                        }
-                        else {
-                            alert("poistaminen ei onnistunut, tarkista tiedot!");
-
-                        }
-                    });
+                for (var i = 0; i < tunnit.length; i++) {
+                    tunnitTaulukko += "<tr>" +
+                        "<td><a href='#'><span class='glyphicon glyphicon-pencil' data-id='" + tunnit[i].TuntiId + "'></span></a></td>" +
+                        "<td>" + tunnit[i].TuntiId + "</td>" +
+                        "<td>" + tunnit[i].HenkiloId + "</td>" +
+                        "<td>" + tunnit[i].TyoId + "</td>" +
+                        "<td>" + tunnit[i].Tuntimaara + "</td>" +
+                        "<td>" + tunnit[i].Paivamaara + "</td>" +
+                        "<td><a href='#'><span class='glyphicon glyphicon-trash' data-id='" + tunnit[i].TuntiId + "'></span></a></td>" +
+                        "</tr>\r\n";
                 }
-            });
 
-            $(".glyphicon-pencil").click(function () {
+                $("#tunnitListana tbody").html(tunnitTaulukko);
 
-                //etsitään tunnin tiedot klikatulta riviltä
-                var tuntiId = $(this).data("id");
-                //var tuntiId = $(this).parent().parent().next().text();
-                //alert(tuntiId);
-                //haetaan tunnin tiedot id:n perusteella
-                $.getJSON("/tunnit/getsingletunti/" + tuntiId, null, function (json2) {
-                    var tunnit = JSON.parse(json2);
 
-                    // kopioidaan tiedot ikkunaan
-                    $("#tuntiModal_TuntiID").val(tunnit.TuntiId);
-                    $("#tuntiModal_HenkiloID").val(tunnit.HenkiloId);
-                    $("#tuntiModal_TyoID").val(tunnit.TyoId);
-                    $("#tuntiModal_Tuntimaara").val(tunnit.Tuntimaara);
-                    $("#tuntiModal_Paivamaara").val(tunnit.Paivamaara);
 
-                    // näytetään ikkuna
-                    $("#tuntiModalTitle").text("Muokkaa tuntia");
-                    $("#tuntiModalDialog").modal("show");
+                //Tietojen poisto
+                $(".glyphicon-trash").click(function () {
 
+                    //etsitään asiakkaan tiedot klikatulta riviltä
+                    var tuntiID = $(this).data("id");
+                    //var tuntiID = $(this).parent().parent().prev().prev().prev().text();
+                    console.log("Poistoa klikattu, id:", tuntiID);
+                    var ok = confirm("haluatko varmasti poistaa tuntitiedot " + tuntiID + "?");
+
+                    if (ok == true) {
+                        $.getJSON("/Tunnit/Delete/" + tuntiID, null, function (status) {
+                            if (status == true) {
+                                alert("Tuntitiedot on poistettu!");
+                                päivitäTuntilista();
+                            }
+                            else {
+                                alert("poistaminen ei onnistunut, tarkista tiedot!");
+
+                            }
+                        });
+                    }
+                });
+
+                $(".glyphicon-pencil").click(function () {
+
+                    //etsitään tunnin tiedot klikatulta riviltä
+                    var tuntiId = $(this).data("id");
+                    //var tuntiId = $(this).parent().parent().next().text();
+                    //alert(tuntiId);
+                    //haetaan tunnin tiedot id:n perusteella
+                    $.getJSON("/tunnit/getsingletunti/" + tuntiId, null, function (json2) {
+                        var tunnit = JSON.parse(json2);
+
+                        // kopioidaan tiedot ikkunaan
+                        $("#tuntiModal_TuntiID").val(tunnit.TuntiId);
+                        $("#tuntiModal_HenkiloID").val(tunnit.HenkiloId);
+                        $("#tuntiModal_TyoID").val(tunnit.TyoId);
+                        $("#tuntiModal_Tuntimaara").val(tunnit.Tuntimaara);
+                        $("#tuntiModal_Paivamaara").val(tunnit.Paivamaara);
+
+                        // näytetään ikkuna
+                        $("#tuntiModalTitle").text("Muokkaa tuntia");
+                        $("#tuntiModalDialog").modal("show");
+
+                    });
                 });
             });
-        });
-    }
+        }
 
-    function haeHenkilot() {
-        $.getJSON("/henkilot/getlist", null, function (json) {
-            var henkilot = JSON.parse(json);
-            //console.log(henkilot);
-            var apu = "<option value=''>-- Valitse henkilö --</option>";
-            for (var i = 0; i < henkilot.length; i++) {
-                apu += "<option value='" + henkilot[i].HenkiloId + "'>" + henkilot[i].HenkiloId + " " + henkilot[i].Etunimi + " " + henkilot[i].Sukunimi + "</option>"
-            }
-            $("#tuntiModal_HenkiloID").html(apu);
-        })
-    };
-
-    function haeTyot() {
-        $.getJSON("/Tyot/HaeKaikkiTyot", null, function (json) {
-            var tyot = JSON.parse(json);
-            console.log(tyot);
-            var apu = "<option value=''>-- Valitse työ --</option>";
-            for (var i = 0; i < tyot.length; i++) {
-                apu += "<option value='" + tyot[i].TyoId + "'>" + tyot[i].TyoId + " " + tyot[i].Tyotunniste + "</option>"
-            }
-            $("#tuntiModal_TyoID").html(apu);
-        })
-    };
-
-    $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
-        päivitäTuntilista();
-        haeHenkilot();
-        haeTyot();
-        $("#tunnitModalLisaaUusiButton").click(function () {
-
-            //tyhjennetään ikkunan tiedot
-            $("#tuntiModal_TuntiID").val(("0"));
-            $("#tuntiModal_HenkiloID").val("");
-            $("#tuntiModal_TyoID").val("");
-            $("#tuntiModal_Tuntimaara").val("");
-            $("#tuntiModal_Paivamaara").val("");
-
-
-            $("#tuntiModalTitle").text("Lisää uusi tunti");
-            $("#tuntiModalDialog").modal("show");
-        });
-
-        $("#tuntiModalSaveButton").click(function () {
-
-            var details = {
-                TuntiId: $("#tuntiModal_TuntiID").val(),
-                HenkiloId: $("#tuntiModal_HenkiloID").val(),
-                TyoId: $("#tuntiModal_TyoID").val(),
-                Tuntimaara: $("#tuntiModal_Tuntimaara").val(),
-                Paivamaara: $("#tuntiModal_Paivamaara").val(),
-
-            };
-            console.log(details)
-            $.post("/Tunnit/Update/", details, function (status) {
-                if (status == true) {
-                    alert("Tiedot tallennettu!");
-                    $("#tuntiModalDialog").modal("hide");
-                    päivitäTuntilista();
+        function haeHenkilot() {
+            $.getJSON("/henkilot/getlist", null, function (json) {
+                var henkilot = JSON.parse(json);
+                //console.log(henkilot);
+                var apu = "<option value=''>-- Valitse henkilö --</option>";
+                for (var i = 0; i < henkilot.length; i++) {
+                    apu += "<option value='" + henkilot[i].HenkiloId + "'>" + henkilot[i].HenkiloId + " " + henkilot[i].Etunimi + " " + henkilot[i].Sukunimi + "</option>"
                 }
-                else {
-                    alert("Tallennus ei onnistunut, tarkista uudelleen!");
-                }
+                $("#tuntiModal_HenkiloID").html(apu);
+            })
+        };
 
+        function haeTyot() {
+            $.getJSON("/Tyot/HaeKaikkiTyot", null, function (json) {
+                var tyot = JSON.parse(json);
+                console.log(tyot);
+                var apu = "<option value=''>-- Valitse työ --</option>";
+                for (var i = 0; i < tyot.length; i++) {
+                    apu += "<option value='" + tyot[i].TyoId + "'>" + tyot[i].TyoId + " " + tyot[i].Tyotunniste + "</option>"
+                }
+                $("#tuntiModal_TyoID").html(apu);
+            })
+        };
+
+        $(function () {  // sivun alustaminen, voisi olla myös näin: $(document).ready(function () {
+            päivitäTuntilista();
+            haeHenkilot();
+            haeTyot();
+            $("#tunnitModalLisaaUusiButton").click(function () {
+
+                //tyhjennetään ikkunan tiedot
+                $("#tuntiModal_TuntiID").val(("0"));
+                $("#tuntiModal_HenkiloID").val("");
+                $("#tuntiModal_TyoID").val("");
+                $("#tuntiModal_Tuntimaara").val("");
+                $("#tuntiModal_Paivamaara").val("");
+
+
+                $("#tuntiModalTitle").text("Lisää uusi tunti");
+                $("#tuntiModalDialog").modal("show");
             });
 
+            $("#tuntiModalSaveButton").click(function () {
+
+                var details = {
+                    TuntiId: $("#tuntiModal_TuntiID").val(),
+                    HenkiloId: $("#tuntiModal_HenkiloID").val(),
+                    TyoId: $("#tuntiModal_TyoID").val(),
+                    Tuntimaara: $("#tuntiModal_Tuntimaara").val(),
+                    Paivamaara: $("#tuntiModal_Paivamaara").val(),
+
+                };
+                console.log(details)
+                $.post("/Tunnit/Update/", details, function (status) {
+                    if (status == true) {
+                        alert("Tiedot tallennettu!");
+                        $("#tuntiModalDialog").modal("hide");
+                        päivitäTuntilista();
+                    }
+                    else {
+                        alert("Tallennus ei onnistunut, tarkista uudelleen!");
+                    }
+
+                });
+
+            });
         });
-    });
 
-</script>
+    </script>
 
 
-        <div class="modal fade" tabindex="-1" role="dialog" id="tuntiModalDialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"><span id="tuntiModalTitle">Muokkaa tuntia</span></h4>
-                    </div>
-                    <div class="modal-body">
-                        @*<div class="row">
+    <div class="modal fade" tabindex="-1" role="dialog" id="tuntiModalDialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><span id="tuntiModalTitle">Muokkaa tuntia</span></h4>
+                </div>
+                <div class="modal-body">
+                    @*<div class="row">
                             <div class="col-md-3">TuntiId</div>
                             <div class="col-md-6"><input class="form-control" id="tuntiModal_TuntiID" type="text" readonly></div>
                         </div>*@
-                        <div class="row">
-                            <div class="col-md-3">TyoId</div>
-                            <div class="col-md-6"><select class="form-control" id="tuntiModal_TyoID" required></select></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">HenkiloId</div>
-                            <div class="col-md-6"><select class="form-control" id="tuntiModal_HenkiloID" required></select></div>
-                        </div>                       
-                        <div class="row">
-                            <div class="col-md-3">Tuntimäärä</div>
-                            <div class="col-md-6"><input class="form-control" id="tuntiModal_Tuntimaara" type="time"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">Päivämäärä</div>
-                            <div class="col-md-6"><input class="form-control" id="tuntiModal_Paivamaara" type="date"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" id="tuntiModalSaveButton">Tallenna</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-                        </div>
-                    </div><!-- /.modal-content -->
+                    <div class="row">
+                        <div class="col-md-3">TyoId</div>
+                        <div class="col-md-6"><select class="form-control" id="tuntiModal_TyoID" required></select></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">HenkiloId</div>
+                        <div class="col-md-6"><select class="form-control" id="tuntiModal_HenkiloID" required></select></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Tuntimäärä</div>
+                        <div class="col-md-6"><input class="form-control" id="tuntiModal_Tuntimaara" type="time"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Päivämäärä</div>
+                        <div class="col-md-6"><input class="form-control" id="tuntiModal_Paivamaara" type="date"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="tuntiModalSaveButton">Tallenna</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+                    </div>
+                </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div>
-                    </div><!-- /.modal -->
-    }
+    </div><!-- /.modal -->
+}
