@@ -12,6 +12,8 @@
           <Property Name="HenkiloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Etunimi" Type="varchar" MaxLength="50" />
           <Property Name="Sukunimi" Type="varchar" MaxLength="50" />
+          <Property Name="Salasana" Type="nvarchar" MaxLength="100" />
+          <Property Name="Kayttajatunnus" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Tunnit">
           <Key>
@@ -92,6 +94,8 @@
           <Property Name="HenkiloId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Sukunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salasana" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kayttajatunnus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tunnit" Relationship="scrumDatabaseModel.Fk_Tunnit_Henkilot" FromRole="Henkilot" ToRole="Tunnit" />
         </EntityType>
         <EntityType Name="Tunnit">
@@ -102,9 +106,9 @@
           <Property Name="HenkiloId" Type="Int32" Nullable="false" />
           <Property Name="TyoId" Type="Int32" Nullable="false" />
           <Property Name="Tuntimaara" Type="Time" Precision="7" />
+          <Property Name="Paivamaara" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Henkilot" Relationship="scrumDatabaseModel.Fk_Tunnit_Henkilot" FromRole="Tunnit" ToRole="Henkilot" />
           <NavigationProperty Name="Tyot" Relationship="scrumDatabaseModel.Fk_Tunnit_Tyot" FromRole="Tunnit" ToRole="Tyot" />
-          <Property Name="Paivamaara" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Tyot">
           <Key>
@@ -148,6 +152,8 @@
           <EntitySetMapping Name="Henkilot">
             <EntityTypeMapping TypeName="scrumDatabaseModel.Henkilot">
               <MappingFragment StoreEntitySet="Henkilot">
+                <ScalarProperty Name="Kayttajatunnus" ColumnName="Kayttajatunnus" />
+                <ScalarProperty Name="Salasana" ColumnName="Salasana" />
                 <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
                 <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
                 <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
