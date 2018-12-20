@@ -33,11 +33,6 @@
 
                 <div class="container">
 
-                    <ul class="nav navbar-nav">
-                        <div style="padding-right: 20px;">
-                            <img src="~/Img/Careeria_Logo_Valkoinen_2.png" alt="img" />
-                        </div>
-                    </ul>
 
                     <div class="navbar-header">
 
@@ -50,7 +45,9 @@
                         </button>
 
 
-                        @Html.ActionLink("Koti", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                   
+                        @Html.ActionLink( " " , "Index" , "Home" , new { style = "background: url('/Img/Careeria_Logo_Valkoinen_2.png') no-repeat center right;display:block; height:49px; width:148px; " } )
 
                     </div>
                     <div class="navbar-collapse collapse">
