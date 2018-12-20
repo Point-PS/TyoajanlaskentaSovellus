@@ -55,6 +55,7 @@ borderSize{
 }
 
 .btn:hover {
+    color: #ffffff;
     background-color: #1C1C1C;
 }
 
@@ -121,3 +122,4 @@ borderSize{
     .link-margin {
         margin-right: 10px;
     }
+

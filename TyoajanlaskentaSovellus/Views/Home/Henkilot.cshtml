@@ -4,6 +4,7 @@
 
 @section scripts {
 
+  
 
 
     <script type="text/javascript">
@@ -53,7 +54,7 @@
                 // tietojen poisto
                 $(".glyphicon-trash").click(function () {
                     // etsitään henkilön tiedot klikatulta riviltä
-     
+
                     //var HenkiloId = $(this).parent().parent().prev().prev().prev().prev().prev().text();
                     var HenkiloId = $(this).data("id");
                     console.log("Poistoa klikattu", HenkiloId);
@@ -156,8 +157,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="henkilotModalSaveButton">Tallenna</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+                <button type="button" class="btn btn-sample  black-background btn:hover dropdown-toggle.btn-sample" id="henkilotModalSaveButton">Tallenna</button>
+                <button type="button" class="btn btn-sample  black-background btn:hover dropdown-toggle.btn-sample" data-dismiss="modal">Sulje</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
