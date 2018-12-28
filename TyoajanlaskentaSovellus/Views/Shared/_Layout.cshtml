@@ -14,11 +14,10 @@
         }({
             instrumentationKey: "c463e2d9-de2c-437b-a2a7-6b575f3dfd91"
             });
-
-
-
         window.appInsights = appInsights;
         appInsights.trackPageView();
+
+
     </script>
 </head>
 <body>
@@ -52,6 +51,7 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Etusivu", "Index", "Home")</li>
                             <li>@Html.ActionLink("Henkilöt", "Henkilot", "Home")</li>
                             <li>@Html.ActionLink("Työt", "Tyot", "Home")</li>
                             <li>@Html.ActionLink("Tunnit", "Tunnit", "Home")</li>
